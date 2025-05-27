@@ -1,5 +1,5 @@
 ---
-// Página de Login Médico
+// Página de Login Médico - Layout Expandido
 ---
 
 <html lang="pt-br">
@@ -16,111 +16,156 @@
         
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background: linear-gradient(135deg, #0d7377 0%, #14a085 100%);
+            background: linear-gradient(135deg, #f0fdfa 0%, #ccfbf1 30%, #ffffff 70%, #f8fafc 100%);
             min-height: 100vh;
             display: flex;
             align-items: center;
             justify-content: center;
+            padding: 2rem;
         }
         
         .login-container {
-            background: white;
-            padding: 2.5rem;
-            border-radius: 15px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+            background: rgba(255, 255, 255, 0.95);
+            padding: 3rem;
+            border-radius: 20px;
+            box-shadow: 0 20px 40px rgba(13, 115, 119, 0.15);
             width: 100%;
-            max-width: 450px;
+            max-width: 500px;
             margin: 20px;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(13, 115, 119, 0.1);
         }
         
         .logo {
             text-align: center;
-            margin-bottom: 2rem;
+            margin-bottom: 2.5rem;
         }
         
         .logo h1 {
-            color: #0d7377;
-            font-size: 2.5em;
-            margin-bottom: 0.5rem;
+            font-size: 3em;
+            margin-bottom: 0.8rem;
+            background: linear-gradient(135deg, #0d7377 0%, #14a085 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
         }
         
         .logo p {
-            color: #666;
-            font-size: 1.1em;
+            color: #0d7377;
+            font-size: 1.2em;
+            font-weight: 500;
         }
         
         .medical-badge {
             background: linear-gradient(135deg, #0d7377 0%, #14a085 100%);
             color: white;
-            padding: 0.5rem 1rem;
-            border-radius: 20px;
-            font-size: 0.9em;
+            padding: 0.8rem 1.5rem;
+            border-radius: 25px;
+            font-size: 1em;
             font-weight: 600;
-            margin: 1rem 0;
+            margin: 1.5rem 0;
             text-align: center;
+            box-shadow: 0 4px 12px rgba(13, 115, 119, 0.2);
+        }
+        
+        .medical-info {
+            background: rgba(240, 253, 250, 0.8);
+            padding: 1.5rem;
+            border-radius: 12px;
+            margin-bottom: 2rem;
+            border-left: 5px solid #14a085;
+            backdrop-filter: blur(5px);
+        }
+        
+        .medical-info h4 {
+            color: #0d7377;
+            margin-bottom: 0.8rem;
+            font-size: 1.1em;
+            font-weight: 600;
+        }
+        
+        .medical-info p {
+            color: #059669;
+            font-size: 0.95em;
+            line-height: 1.5;
         }
         
         .form-group {
-            margin-bottom: 1.5rem;
+            margin-bottom: 2rem;
         }
         
         label {
             display: block;
-            margin-bottom: 0.5rem;
+            margin-bottom: 0.8rem;
             font-weight: 600;
-            color: #333;
+            color: #0d7377;
+            font-size: 1em;
         }
         
         input {
             width: 100%;
-            padding: 1rem;
-            border: 2px solid #e1e5e9;
-            border-radius: 8px;
-            font-size: 1rem;
-            transition: border-color 0.3s ease, box-shadow 0.3s ease;
+            padding: 1.2rem;
+            border: 2px solid rgba(13, 115, 119, 0.2);
+            border-radius: 12px;
+            font-size: 1.1rem;
+            transition: all 0.3s ease;
+            background: rgba(255, 255, 255, 0.9);
+            backdrop-filter: blur(5px);
         }
         
         input:focus {
             outline: none;
             border-color: #0d7377;
-            box-shadow: 0 0 0 3px rgba(13, 115, 119, 0.1);
+            box-shadow: 0 0 0 4px rgba(13, 115, 119, 0.1);
+            background: rgba(255, 255, 255, 1);
+        }
+        
+        input::placeholder {
+            color: #94a3b8;
+            font-size: 1rem;
         }
         
         /* Indicadores de validação */
         .field-valid {
-            border-color: #28a745 !important;
-            box-shadow: 0 0 0 3px rgba(40, 167, 69, 0.1) !important;
+            border-color: #14a085 !important;
+            box-shadow: 0 0 0 4px rgba(20, 160, 133, 0.1) !important;
         }
 
         .field-invalid {
-            border-color: #dc3545 !important;
-            box-shadow: 0 0 0 3px rgba(220, 53, 69, 0.1) !important;
+            border-color: #ef4444 !important;
+            box-shadow: 0 0 0 4px rgba(239, 68, 68, 0.1) !important;
         }
 
         .field-error {
-            color: #dc3545;
-            font-size: 0.8em;
-            margin-top: 0.5rem;
+            color: #ef4444;
+            font-size: 0.9em;
+            margin-top: 0.6rem;
             display: none;
+            font-weight: 500;
         }
         
         .btn {
             width: 100%;
-            padding: 1rem;
+            padding: 1.3rem;
             background: linear-gradient(135deg, #0d7377 0%, #14a085 100%);
             color: white;
             border: none;
-            border-radius: 8px;
-            font-size: 1.1rem;
+            border-radius: 12px;
+            font-size: 1.2rem;
             font-weight: 600;
             cursor: pointer;
-            transition: transform 0.2s ease, box-shadow 0.2s ease;
-            margin-bottom: 1rem;
+            transition: all 0.3s ease;
+            margin-bottom: 1.5rem;
+            box-shadow: 0 4px 12px rgba(13, 115, 119, 0.2);
         }
         
         .btn:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 5px 15px rgba(13, 115, 119, 0.4);
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(13, 115, 119, 0.3);
+        }
+        
+        .btn:active {
+            transform: translateY(-1px);
         }
         
         .btn:disabled {
@@ -130,56 +175,67 @@
         }
         
         .message {
-            padding: 1rem;
-            border-radius: 8px;
-            margin-bottom: 1rem;
+            padding: 1.2rem;
+            border-radius: 12px;
+            margin-bottom: 1.5rem;
             text-align: center;
             font-weight: 600;
+            font-size: 1rem;
         }
         
         .message.success {
-            background: #d4edda;
-            color: #155724;
-            border: 1px solid #c3e6cb;
+            background: rgba(209, 250, 229, 0.9);
+            color: #065f46;
+            border: 1px solid rgba(5, 150, 105, 0.3);
         }
         
         .message.error {
-            background: #f8d7da;
-            color: #721c24;
-            border: 1px solid #f5c6cb;
+            background: rgba(254, 226, 226, 0.9);
+            color: #991b1b;
+            border: 1px solid rgba(239, 68, 68, 0.3);
         }
         
         .link {
             text-align: center;
-            margin-top: 1.5rem;
+            margin: 1.5rem 0;
         }
         
         .link a {
             color: #0d7377;
             text-decoration: none;
             font-weight: 600;
-            transition: color 0.3s ease;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+            padding: 0.5rem;
+            border-radius: 8px;
         }
         
         .link a:hover {
             color: #14a085;
             text-decoration: underline;
+            background: rgba(13, 115, 119, 0.05);
         }
         
         .loading {
             display: none;
             text-align: center;
-            margin: 1rem 0;
+            margin: 1.5rem 0;
         }
         
         .spinner {
-            border: 3px solid #f3f3f3;
-            border-top: 3px solid #0d7377;
+            border: 4px solid rgba(13, 115, 119, 0.1);
+            border-top: 4px solid #0d7377;
             border-radius: 50%;
-            width: 30px;
-            height: 30px;
+            width: 40px;
+            height: 40px;
             animation: spin 1s linear infinite;
-            margin: 0 auto;
+            margin: 0 auto 1rem;
+        }
+        
+        .loading p {
+            color: #0d7377;
+            font-weight: 500;
+            font-size: 1rem;
         }
         
         @keyframes spin {
@@ -187,42 +243,43 @@
             100% { transform: rotate(360deg); }
         }
         
-        .medical-info {
-            background: #f8f9fa;
-            padding: 1rem;
-            border-radius: 8px;
-            margin-bottom: 1.5rem;
-            border-left: 4px solid #0d7377;
+        @media (max-width: 768px) {
+            body {
+                padding: 1rem;
+            }
+            
+            .login-container {
+                padding: 2rem;
+                max-width: 100%;
+            }
+            
+            .logo h1 {
+                font-size: 2.5em;
+            }
+            
+            .logo p {
+                font-size: 1.1em;
+            }
+            
+            input {
+                padding: 1rem;
+                font-size: 1rem;
+            }
+            
+            .btn {
+                padding: 1.1rem;
+                font-size: 1.1rem;
+            }
         }
         
-        .medical-info h4 {
-            color: #0d7377;
-            margin-bottom: 0.5rem;
-        }
-        
-        .medical-info p {
-            color: #666;
-            font-size: 0.9em;
-            line-height: 1.4;
-        }
-
-        .debug-info {
-            background: #e3f2fd;
-            padding: 1rem;
-            border-radius: 8px;
-            margin-bottom: 1rem;
-            border-left: 4px solid #2196f3;
-            font-size: 0.85em;
-        }
-
-        .debug-info h5 {
-            color: #1976d2;
-            margin-bottom: 0.5rem;
-        }
-
-        .debug-info p {
-            color: #1976d2;
-            margin: 0.2rem 0;
+        @media (max-width: 480px) {
+            .login-container {
+                padding: 1.5rem;
+            }
+            
+            .logo h1 {
+                font-size: 2.2em;
+            }
         }
     </style>
 </head>
@@ -238,16 +295,8 @@
         </div>
         
         <div class="medical-info">
-            <h4>Área Médica</h4>
-            <p>IA especializada, WhatsApp para pacientes e sistema BPO financeiro integrados.</p>
-        </div>
-
-        <!-- Info de Debug para teste -->
-        <div class="debug-info">
-            <h5>🔧 Usuários de Teste:</h5>
-            <p><strong>Email:</strong> teste@debug.com</p>
-            <p><strong>Senha:</strong> MinhaSenh@123</p>
-            <p><small>Use F12 → Console para ver logs detalhados</small></p>
+            <h4>Área Médica Especializada</h4>
+            <p>IA especializada, WhatsApp para pacientes e sistema BPO financeiro integrados em uma plataforma única.</p>
         </div>
         
         <div id="message"></div>
@@ -267,7 +316,7 @@
             
             <div class="loading" id="loading">
                 <div class="spinner"></div>
-                <p>Autenticando profissional....</p>
+                <p>Autenticando profissional...</p>
             </div>
             
             <button type="submit" class="btn" id="submitBtn">Acessar Plataforma Médica</button>
@@ -361,6 +410,9 @@
                 emailInput.classList.remove('field-valid');
                 document.getElementById('email-error').textContent = 'Email inválido';
                 document.getElementById('email-error').style.display = 'block';
+            } else {
+                emailInput.classList.remove('field-valid', 'field-invalid');
+                document.getElementById('email-error').style.display = 'none';
             }
         });
 
@@ -376,6 +428,9 @@
                 passwordInput.classList.remove('field-valid');
                 document.getElementById('password-error').textContent = 'Senha muito curta';
                 document.getElementById('password-error').style.display = 'block';
+            } else {
+                passwordInput.classList.remove('field-valid', 'field-invalid');
+                document.getElementById('password-error').style.display = 'none';
             }
         });
         
