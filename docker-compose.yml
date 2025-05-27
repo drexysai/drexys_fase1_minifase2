@@ -1,0 +1,63 @@
+version: "3.9"
+
+services:
+  backend:
+    build: ./dr_exys_backend
+    container_name: dr_exys_backend
+    volumes:
+      - ./dr_exys_backend:/app
+    ports:
+      - "0.0.0.0:8007:8000"
+    env_file:
+      - .env
+    depends_on:
+      - db
+    networks:
+      - dr_exys_network
+
+  frontend:
+    build: ./dr_exys_frontend
+    container_name: dr_exys_frontend
+    volumes:
+      - ./dr_exys_frontend:/app
+      - /app/node_modules
+    ports:
+      - "0.0.0.0:8008:3000"
+    networks:
+      - dr_exys_network
+
+  db:
+    image: postgres:15
+    container_name: dr_exys_db
+    restart: always
+    volumes:
+      - ./infrastructure/database:/docker-entrypoint-initdb.d
+      - ./infrastructure/volumes/postgres_data:/var/lib/postgresql/data
+    environment:
+      POSTGRES_USER: dr_exys
+      POSTGRES_PASSWORD: dr_exys123
+      POSTGRES_DB: dr_exys_db
+    ports:
+      - "127.0.0.1:8009:5432"
+    networks:
+      - dr_exys_network
+
+  nginx:
+    image: nginx:latest
+    container_name: dr_exys_nginx
+    ports:
+      - "0.0.0.0:8081:80"
+    volumes:
+      - ./infrastructure/nginx/nginx.conf:/etc/nginx/nginx.conf
+    depends_on:
+      - backend
+      - frontend
+    networks:
+      - dr_exys_network
+
+networks:
+  dr_exys_network:
+    driver: bridge
+
+volumes:
+  postgres_data:

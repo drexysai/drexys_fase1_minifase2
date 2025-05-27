@@ -1,0 +1,207 @@
+# =================================
+# Dr. Exys Project - .gitignore
+# =================================
+
+# ===============================
+# ARQUIVOS SENSÍVEIS (CRÍTICO!)
+# ===============================
+.env
+.env.local
+.env.production
+.env.dev
+.env.prod
+*.env
+.env.*
+
+# Chaves e certificados
+*.key
+*.pem
+*.crt
+*.p12
+*.pfx
+ssl/
+certificates/
+
+# Arquivos de configuração com senhas
+config/local_settings.py
+secrets.json
+
+# ===============================
+# DOCKER & INFRAESTRUTURA
+# ===============================
+# Volumes Docker com dados persistentes
+infrastructure/volumes/postgres_data/
+infrastructure/volumes/media/
+infrastructure/volumes/uploads/
+infrastructure/volumes/docs/
+infrastructure/volumes/*/
+
+# Logs Docker
+*.log
+logs/
+docker-compose.override.yml
+
+# ===============================
+# PYTHON / DJANGO BACKEND
+# ===============================
+# Ambientes virtuais
+dr_exys_backend/venv/
+dr_exys_backend/env/
+dr_exys_backend/.venv/
+venv/
+env/
+.venv/
+
+# Cache Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+
+# Django específico
+dr_exys_backend/db.sqlite3
+dr_exys_backend/db.sqlite3-journal
+dr_exys_backend/staticfiles/
+dr_exys_backend/media/
+dr_exys_backend/uploads/
+dr_exys_backend/locale/*/LC_MESSAGES/*.mo
+dr_exys_backend/locale/*/LC_MESSAGES/*.po~
+
+# Migrações específicas (manter apenas __init__.py)
+dr_exys_backend/apps/*/migrations/0*.py
+!dr_exys_backend/apps/*/migrations/__init__.py
+
+# Celery
+dr_exys_backend/celerybeat-schedule
+dr_exys_backend/celerybeat.pid
+
+# ===============================
+# NODE.JS / ASTRO FRONTEND
+# ===============================
+# Dependências Node
+dr_exys_frontend/node_modules/
+dr_exys_frontend/.pnp
+dr_exys_frontend/.pnp.js
+
+# Build Astro
+dr_exys_frontend/dist/
+dr_exys_frontend/.output/
+dr_exys_frontend/.astro/
+
+# Cache e logs
+dr_exys_frontend/.cache/
+dr_exys_frontend/*.log
+dr_exys_frontend/npm-debug.log*
+dr_exys_frontend/yarn-debug.log*
+dr_exys_frontend/yarn-error.log*
+
+# Arquivos temporários Astro
+dr_exys_frontend/.env.local
+dr_exys_frontend/.env.development.local
+dr_exys_frontend/.env.test.local
+dr_exys_frontend/.env.production.local
+
+# ===============================
+# ARQUIVOS MÉDICOS SENSÍVEIS
+# ===============================
+# Dados médicos (LGPD/HIPAA compliance)
+medical_data/
+patient_data/
+medical_records/
+exam_files/
+audio_medical/
+medical_uploads/
+
+# Backups com dados sensíveis
+backups/
+*.sql
+*.dump
+database_backups/
+
+# ===============================
+# DESENVOLVIMENTO
+# ===============================
+# IDEs
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# Arquivos temporários
+.tmp/
+temp/
+tmp/
+.DS_Store
+Thumbs.db
+
+# Testes
+coverage/
+.coverage
+.pytest_cache/
+.tox/
+htmlcov/
+.nyc_output
+
+# ===============================
+# PRODUÇÃO
+# ===============================
+# Arquivos de deploy
+deploy.sh
+production_deploy/
+staging/
+
+# Monitoramento (logs sensíveis)
+monitoring/logs/
+prometheus/data/
+grafana/data/
+
+# ===============================
+# ESPECÍFICO DO PROJETO
+# ===============================
+# Documentação gerada
+docs/_build/
+site/
+
+# Arquivos de configuração local
+local_config/
+personal_settings/
+
+# Testes de carga
+load_testing/results/
+performance_tests/
+
+# Scripts pessoais
+my_scripts/
+test_scripts/
+debug_scripts/
+
+# ===============================
+# LOGS DIVERSOS
+# ===============================
+*.log
+*.log.*
+log/
+logs/
+/logs/
+
+# ===============================
+# COMENTÁRIOS IMPORTANTES
+# ===============================
+
+# INCLUIR NO GIT (exemplos):
+# - docker-compose.yml (sem senhas)
+# - requirements.txt
+# - package.json
+# - Dockerfile(s)
+# - nginx.conf (sem senhas)
+# - README.md
+# - .env.example (sem valores reais)
+
+# NUNCA INCLUIR:
+# - Senhas, chaves, tokens
+# - Dados médicos reais
+# - Volumes Docker com dados
+# - Arquivos de sessão
+# - Logs de produção
