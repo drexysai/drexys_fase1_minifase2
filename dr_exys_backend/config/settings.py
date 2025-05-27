@@ -1,5 +1,6 @@
 from pathlib import Path
 import os
+from datetime import timedelta
 
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -16,6 +17,15 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    
+    # Third party apps para plataforma médica
+    'rest_framework',
+    'rest_framework_simplejwt',
+    'rest_framework_simplejwt.token_blacklist',
+    
+    # Local apps médicos - Dr. Exys
+    'apps.users',
+    'apps.authentication',
 ]
 
 MIDDLEWARE = [
@@ -55,6 +65,9 @@ DATABASES = {
         'PASSWORD': os.environ.get('POSTGRES_PASSWORD', 'dr_exys123'),
         'HOST': 'db',
         'PORT': '5432',
+        'OPTIONS': {
+            'options': '-c search_path=medicos,public'  # ← ADICIONAR ESTA LINHA
+        },
     }
 }
 
@@ -97,3 +110,49 @@ CSRF_TRUSTED_ORIGINS = [
 # Configurações adicionais para desenvolvimento
 CSRF_COOKIE_SECURE = False
 CSRF_COOKIE_SAMESITE = 'Lax'
+
+# ============================================
+# CONFIGURAÇÕES MÉDICAS DR. EXYS
+# ============================================
+
+# Modelo de usuário customizado para área médica
+AUTH_USER_MODEL = 'users.User'
+
+# Configurações REST Framework para API médica
+REST_FRAMEWORK = {
+    'DEFAULT_AUTHENTICATION_CLASSES': (
+        'rest_framework_simplejwt.authentication.JWTAuthentication',
+    ),
+    'DEFAULT_PERMISSION_CLASSES': [
+        'rest_framework.permissions.IsAuthenticated',
+    ],
+    'DEFAULT_RENDERER_CLASSES': [
+        'rest_framework.renderers.JSONRenderer',
+        'rest_framework.renderers.BrowsableAPIRenderer',  # ← LINHA ADICIONADA
+    ],
+    'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.PageNumberPagination',
+    'PAGE_SIZE': 20,
+}
+
+# Configurações JWT para autenticação médica segura
+SIMPLE_JWT = {
+    'ACCESS_TOKEN_LIFETIME': timedelta(minutes=60),
+    'REFRESH_TOKEN_LIFETIME': timedelta(days=7),
+    'ROTATE_REFRESH_TOKENS': True,
+    'BLACKLIST_AFTER_ROTATION': True,
+    'UPDATE_LAST_LOGIN': True,
+    'ALGORITHM': 'HS256',
+    'SIGNING_KEY': SECRET_KEY,
+    'VERIFYING_KEY': None,
+    'AUTH_HEADER_TYPES': ('Bearer',),
+    'USER_ID_FIELD': 'id',
+    'USER_ID_CLAIM': 'user_id',
+    'AUTH_TOKEN_CLASSES': ('rest_framework_simplejwt.tokens.AccessToken',),
+}
+
+# Configurações específicas para área médica
+MEDICAL_SETTINGS = {
+    'REQUIRE_CRM_FOR_PROFESSIONALS': True,
+    'AUTO_APPROVE_MEDICAL_PROFESSIONALS': False,
+    'DEFAULT_USER_TYPE': 'regular',  # regular, medical
+}

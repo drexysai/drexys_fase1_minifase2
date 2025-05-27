@@ -1,0 +1,452 @@
+---
+// Página de Login Médico
+---
+
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login Médico - Dr. Exys</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #0d7377 0%, #14a085 100%);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .login-container {
+            background: white;
+            padding: 2.5rem;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+            width: 100%;
+            max-width: 450px;
+            margin: 20px;
+        }
+        
+        .logo {
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+        
+        .logo h1 {
+            color: #0d7377;
+            font-size: 2.5em;
+            margin-bottom: 0.5rem;
+        }
+        
+        .logo p {
+            color: #666;
+            font-size: 1.1em;
+        }
+        
+        .medical-badge {
+            background: linear-gradient(135deg, #0d7377 0%, #14a085 100%);
+            color: white;
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            font-size: 0.9em;
+            font-weight: 600;
+            margin: 1rem 0;
+            text-align: center;
+        }
+        
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+        
+        label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+            color: #333;
+        }
+        
+        input {
+            width: 100%;
+            padding: 1rem;
+            border: 2px solid #e1e5e9;
+            border-radius: 8px;
+            font-size: 1rem;
+            transition: border-color 0.3s ease, box-shadow 0.3s ease;
+        }
+        
+        input:focus {
+            outline: none;
+            border-color: #0d7377;
+            box-shadow: 0 0 0 3px rgba(13, 115, 119, 0.1);
+        }
+        
+        /* Indicadores de validação */
+        .field-valid {
+            border-color: #28a745 !important;
+            box-shadow: 0 0 0 3px rgba(40, 167, 69, 0.1) !important;
+        }
+
+        .field-invalid {
+            border-color: #dc3545 !important;
+            box-shadow: 0 0 0 3px rgba(220, 53, 69, 0.1) !important;
+        }
+
+        .field-error {
+            color: #dc3545;
+            font-size: 0.8em;
+            margin-top: 0.5rem;
+            display: none;
+        }
+        
+        .btn {
+            width: 100%;
+            padding: 1rem;
+            background: linear-gradient(135deg, #0d7377 0%, #14a085 100%);
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+            margin-bottom: 1rem;
+        }
+        
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(13, 115, 119, 0.4);
+        }
+        
+        .btn:disabled {
+            opacity: 0.7;
+            cursor: not-allowed;
+            transform: none;
+        }
+        
+        .message {
+            padding: 1rem;
+            border-radius: 8px;
+            margin-bottom: 1rem;
+            text-align: center;
+            font-weight: 600;
+        }
+        
+        .message.success {
+            background: #d4edda;
+            color: #155724;
+            border: 1px solid #c3e6cb;
+        }
+        
+        .message.error {
+            background: #f8d7da;
+            color: #721c24;
+            border: 1px solid #f5c6cb;
+        }
+        
+        .link {
+            text-align: center;
+            margin-top: 1.5rem;
+        }
+        
+        .link a {
+            color: #0d7377;
+            text-decoration: none;
+            font-weight: 600;
+            transition: color 0.3s ease;
+        }
+        
+        .link a:hover {
+            color: #14a085;
+            text-decoration: underline;
+        }
+        
+        .loading {
+            display: none;
+            text-align: center;
+            margin: 1rem 0;
+        }
+        
+        .spinner {
+            border: 3px solid #f3f3f3;
+            border-top: 3px solid #0d7377;
+            border-radius: 50%;
+            width: 30px;
+            height: 30px;
+            animation: spin 1s linear infinite;
+            margin: 0 auto;
+        }
+        
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        
+        .medical-info {
+            background: #f8f9fa;
+            padding: 1rem;
+            border-radius: 8px;
+            margin-bottom: 1.5rem;
+            border-left: 4px solid #0d7377;
+        }
+        
+        .medical-info h4 {
+            color: #0d7377;
+            margin-bottom: 0.5rem;
+        }
+        
+        .medical-info p {
+            color: #666;
+            font-size: 0.9em;
+            line-height: 1.4;
+        }
+
+        .debug-info {
+            background: #e3f2fd;
+            padding: 1rem;
+            border-radius: 8px;
+            margin-bottom: 1rem;
+            border-left: 4px solid #2196f3;
+            font-size: 0.85em;
+        }
+
+        .debug-info h5 {
+            color: #1976d2;
+            margin-bottom: 0.5rem;
+        }
+
+        .debug-info p {
+            color: #1976d2;
+            margin: 0.2rem 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="login-container">
+        <div class="logo">
+            <h1>🏥 Dr. Exys</h1>
+            <p>Portal de Profissionais de Saúde</p>
+        </div>
+        
+        <div class="medical-badge">
+            🩺 Acesso Restrito - Profissionais de Saúde
+        </div>
+        
+        <div class="medical-info">
+            <h4>Área Médica</h4>
+            <p>IA especializada, WhatsApp para pacientes e sistema BPO financeiro integrados.</p>
+        </div>
+
+        <!-- Info de Debug para teste -->
+        <div class="debug-info">
+            <h5>🔧 Usuários de Teste:</h5>
+            <p><strong>Email:</strong> teste@debug.com</p>
+            <p><strong>Senha:</strong> MinhaSenh@123</p>
+            <p><small>Use F12 → Console para ver logs detalhados</small></p>
+        </div>
+        
+        <div id="message"></div>
+        
+        <form id="loginForm">
+            <div class="form-group">
+                <label for="email">Email Profissional:</label>
+                <input type="email" id="email" name="email" required placeholder="medico@clinica.com">
+                <div class="field-error" id="email-error"></div>
+            </div>
+            
+            <div class="form-group">
+                <label for="password">Senha:</label>
+                <input type="password" id="password" name="password" required placeholder="Sua senha médica">
+                <div class="field-error" id="password-error"></div>
+            </div>
+            
+            <div class="loading" id="loading">
+                <div class="spinner"></div>
+                <p>Autenticando profissional....</p>
+            </div>
+            
+            <button type="submit" class="btn" id="submitBtn">Acessar Plataforma Médica</button>
+        </form>
+        
+        <div class="link">
+            <a href="/auth/register">Novo profissional? Cadastre-se aqui</a>
+        </div>
+        
+        <div class="link">
+            <a href="/">← Voltar para o início</a>
+        </div>
+    </div>
+
+    <script type="module">
+        // AuthService inline - mesmo padrão do register
+        const authService = {
+            async login(credentials) {
+                const response = await fetch('http://192.168.1.4:8081/api/v1/auth/login/', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(credentials)
+                });
+                
+                if (!response.ok) {
+                    const error = await response.json();
+                    throw error;
+                }
+                
+                const data = await response.json();
+                
+                // Salvar tokens no localStorage
+                if (data.tokens) {
+                    localStorage.setItem('medical_access_token', data.tokens.access);
+                    localStorage.setItem('medical_refresh_token', data.tokens.refresh);
+                    localStorage.setItem('medical_user', JSON.stringify(data.user));
+                }
+                
+                return data;
+            },
+            
+            isAuthenticated() {
+                return !!localStorage.getItem('medical_access_token');
+            }
+        };
+        
+        const form = document.getElementById('loginForm');
+        const submitBtn = document.getElementById('submitBtn');
+        const loading = document.getElementById('loading');
+        const messageDiv = document.getElementById('message');
+        
+        // Redirecionar se profissional já estiver logado
+        if (authService.isAuthenticated()) {
+            console.log('Usuário já logado, redirecionando...');
+            window.location.href = '/dashboard/medico';
+        }
+        
+        function showMessage(message, type = 'error') {
+            messageDiv.innerHTML = `<div class="message ${type}">${message}</div>`;
+            setTimeout(() => {
+                messageDiv.innerHTML = '';
+            }, 7000);
+        }
+        
+        function setLoading(isLoading) {
+            if (isLoading) {
+                loading.style.display = 'block';
+                submitBtn.disabled = true;
+                submitBtn.textContent = 'Autenticando...';
+            } else {
+                loading.style.display = 'none';
+                submitBtn.disabled = false;
+                submitBtn.textContent = 'Acessar Plataforma Médica';
+            }
+        }
+
+        // Validação visual em tempo real
+        const emailInput = document.getElementById('email');
+        const passwordInput = document.getElementById('password');
+
+        emailInput.addEventListener('input', () => {
+            const email = emailInput.value;
+            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            
+            if (email && emailRegex.test(email)) {
+                emailInput.classList.add('field-valid');
+                emailInput.classList.remove('field-invalid');
+                document.getElementById('email-error').style.display = 'none';
+            } else if (email) {
+                emailInput.classList.add('field-invalid');
+                emailInput.classList.remove('field-valid');
+                document.getElementById('email-error').textContent = 'Email inválido';
+                document.getElementById('email-error').style.display = 'block';
+            }
+        });
+
+        passwordInput.addEventListener('input', () => {
+            const password = passwordInput.value;
+            
+            if (password.length >= 3) {
+                passwordInput.classList.add('field-valid');
+                passwordInput.classList.remove('field-invalid');
+                document.getElementById('password-error').style.display = 'none';
+            } else if (password) {
+                passwordInput.classList.add('field-invalid');
+                passwordInput.classList.remove('field-valid');
+                document.getElementById('password-error').textContent = 'Senha muito curta';
+                document.getElementById('password-error').style.display = 'block';
+            }
+        });
+        
+        form.addEventListener('submit', async (e) => {
+            e.preventDefault();
+            console.log('🔧 Login form submetido!'); // Debug
+            
+            const formData = new FormData(e.target);
+            const credentials = {
+                email: formData.get('email'),
+                password: formData.get('password')
+            };
+            
+            console.log('🔧 Dados do login:', credentials); // Debug
+            console.log('🔧 URL da API:', 'http://192.168.1.4:8081/api/v1/auth/login/'); // Debug
+            
+            // Validação básica
+            if (!credentials.email || !credentials.password) {
+                showMessage('Por favor, preencha todos os campos');
+                return;
+            }
+            
+            setLoading(true);
+            
+            try {
+                console.log('🔧 Enviando para API de login...'); // Debug
+                const response = await authService.login(credentials);
+                console.log('🔧 Resposta da API login:', response); // Debug
+                
+                if (response.success) {
+                    showMessage('Login médico realizado com sucesso! Redirecionando...', 'success');
+                    
+                    setTimeout(() => {
+                        console.log('🔧 Redirecionando para dashboard...');
+                        window.location.href = '/dashboard/medico';
+                    }, 1500);
+                } else {
+                    throw new Error(response.message || 'Erro no login');
+                }
+                
+            } catch (error) {
+                console.error('🔧 Erro completo no login:', error); // Debug
+                
+                let errorMessage = 'Erro no login. Verifique suas credenciais médicas.';
+                
+                if (error.errors) {
+                    console.log('🔧 Erros da API:', error.errors); // Debug
+                    const errors = [];
+                    for (const [field, messages] of Object.entries(error.errors)) {
+                        if (Array.isArray(messages)) {
+                            errors.push(...messages);
+                        } else {
+                            errors.push(messages);
+                        }
+                    }
+                    errorMessage = errors.join(', ');
+                } else if (error.message) {
+                    errorMessage = error.message;
+                }
+                
+                console.log('🔧 Mensagem de erro final:', errorMessage); // Debug
+                showMessage(errorMessage);
+            } finally {
+                setLoading(false);
+            }
+        });
+
+        // Debug inicial
+        console.log('🔧 Página de login carregada');
+        console.log('🔧 AuthService disponível:', !!authService);
+        console.log('🔧 Já autenticado?', authService.isAuthenticated());
+    </script>
+</body>
+</html>
