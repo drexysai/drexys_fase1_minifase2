@@ -341,24 +341,113 @@
     <script type="module">
         import { authService } from '../../services/auth.js';
         
+        // ==========================================
+        // VERIFICAÇÃO INICIAL COM AUTHSERVICE
+        // ==========================================
+        
         // Verificar se profissional está logado
         if (!authService.isAuthenticated()) {
-            window.location.href = '/auth/login';
+            alert('Acesso restrito! Redirecionando para login...');
+            window.location.href = '/api/v1/auth/login/';
         }
         
-        // Carregar informações do profissional
-        const medical = authService.getCurrentMedical();
-        if (medical) {
+        // ==========================================
+        // CARREGAR PERFIL MÉDICO
+        // ==========================================
+        
+        async function loadMedicalProfile() {
+            try {
+                // Tentar carregar via authService primeiro
+                let medical = authService.getCurrentMedical();
+                
+                if (medical) {
+                    console.log('✅ Dados do authService encontrados:', medical);
+                    updateMedicalInterface(medical, { complete: false });
+                }
+                
+                // Buscar dados atualizados da API
+                try {
+                    const updatedMedical = await authService.getMedicalProfile();
+                    console.log('✅ Dados atualizados da API:', updatedMedical);
+                    updateMedicalInterface(updatedMedical, { complete: updatedMedical.is_profile_complete || false });
+                } catch (apiError) {
+                    console.log('⚠️ Erro ao buscar dados da API, usando dados locais');
+                }
+                
+            } catch (error) {
+                console.error('❌ Erro ao carregar perfil:', error);
+                
+                // Fallback: verificar tokens manuais se authService falhar
+                const manualToken = localStorage.getItem('accessToken');
+                if (manualToken) {
+                    console.log('🔄 Tentando com tokens manuais...');
+                    await loadWithManualTokens();
+                }
+            }
+        }
+        
+        async function loadWithManualTokens() {
+            try {
+                const token = localStorage.getItem('accessToken');
+                
+                const response = await fetch('/api/v1/auth/profile/', {
+                    method: 'GET',
+                    headers: {
+                        'Authorization': `Bearer ${token}`,
+                        'Content-Type': 'application/json'
+                    }
+                });
+                
+                if (response.ok) {
+                    const data = await response.json();
+                    const medical = data.user;
+                    const profileStatus = data.profile_status;
+                    
+                    console.log('✅ Dados carregados com tokens manuais:', medical);
+                    updateMedicalInterface(medical, profileStatus);
+                    
+                } else if (response.status === 401) {
+                    console.log('❌ Token expirado');
+                    await authService.logout();
+                    window.location.href = '/api/v1/auth/login/';
+                }
+                
+            } catch (error) {
+                console.error('❌ Erro com tokens manuais:', error);
+                document.getElementById('userGreeting').textContent = 'Erro ao carregar';
+            }
+        }
+        
+        function updateMedicalInterface(medical, profileStatus) {
+            const displayName = medical.first_name || medical.email.split('@')[0];
+            const fullName = medical.first_name && medical.last_name 
+                ? `${medical.first_name} ${medical.last_name}` 
+                : displayName;
+            
             // Atualizar saudação
-            document.getElementById('userGreeting').textContent = `Dr(a). ${medical.first_name}`;
-            document.getElementById('welcomeTitle').textContent = `Bem-vindo, Dr(a). ${medical.first_name}! 🩺`;
+            document.getElementById('userGreeting').textContent = `Dr(a). ${displayName}`;
+            
+            // Atualizar título de boas-vindas
+            const welcomeText = medical.first_name 
+                ? `Bem-vindo, Dr(a). ${medical.first_name}! 🩺`
+                : `Bem-vindo à Plataforma Médica, ${displayName}! 🩺`;
+            document.getElementById('welcomeTitle').textContent = welcomeText;
+            
+            // Atualizar badge profissional
+            const medicalBadge = document.querySelector('.medical-badge');
+            if (medical.is_medical_professional) {
+                medicalBadge.innerHTML = '👩‍⚕️ Profissional';
+            } else {
+                medicalBadge.innerHTML = '👤 Usuário';
+                medicalBadge.style.background = 'rgba(255,193,7,0.2)';
+            }
             
             // Mostrar detalhes do profissional
             const detailsContent = document.getElementById('detailsContent');
             detailsContent.innerHTML = `
                 <div class="detail-item">
                     <span class="detail-label">Nome Completo:</span>
-                    <span class="detail-value">Dr(a). ${medical.first_name} ${medical.last_name}</span>
+                    <span class="detail-value">${fullName}</span>
                 </div>
                 <div class="detail-item">
                     <span class="detail-label">Email Profissional:</span>
@@ -370,13 +459,25 @@
                 </div>
                 <div class="detail-item">
                     <span class="detail-label">Especialidade:</span>
-                    <span class="detail-value">${authService.getMedicalSpecialty()}</span>
+                    <span class="detail-value">${medical.especialidade || authService.getMedicalSpecialty() || 'Não informado'}</span>
                 </div>
                 <div class="detail-item">
-                    <span class="detail-label">Status CRM:</span>
+                    <span class="detail-label">CRM:</span>
+                    <span class="detail-value">${medical.crm || 'Não informado'}</span>
+                </div>
+                <div class="detail-item">
+                    <span class="detail-label">Status Profissional:</span>
                     <span class="detail-value">
-                        <span class="medical-status ${authService.isMedicalVerified() ? 'status-verified' : 'status-pending'}">
-                            ${authService.isMedicalVerified() ? '✅ Verificado' : '⏳ Pendente'}
+                        <span class="medical-status ${medical.is_medical_professional || authService.isMedicalVerified() ? 'status-verified' : 'status-pending'}">
+                            ${medical.is_medical_professional || authService.isMedicalVerified() ? '✅ Profissional de Saúde' : '⏳ Usuário Comum'}
+                        </span>
+                    </span>
+                </div>
+                <div class="detail-item">
+                    <span class="detail-label">Perfil Completo:</span>
+                    <span class="detail-value">
+                        <span class="medical-status ${profileStatus.complete ? 'status-verified' : 'status-pending'}">
+                            ${profileStatus.complete ? '✅ Completo' : '⏳ Incompleto'}
                         </span>
                     </span>
                 </div>
@@ -387,13 +488,47 @@
             `;
         }
         
-        // Logout médico
+        // ==========================================
+        // INICIALIZAÇÃO DA PÁGINA
+        // ==========================================
+        
+        // Carregar dados ao inicializar
+        document.addEventListener('DOMContentLoaded', function() {
+            console.log('🏥 Dashboard médico carregando...');
+            console.log('🔍 Tokens disponíveis:', {
+                authService: authService.isAuthenticated() ? 'Sim' : 'Não',
+                manual_access: localStorage.getItem('accessToken') ? 'Sim' : 'Não',
+                manual_refresh: localStorage.getItem('refreshToken') ? 'Sim' : 'Não',
+                medical_access: localStorage.getItem('medical_access_token') ? 'Sim' : 'Não'
+            });
+            
+            loadMedicalProfile();
+        });
+        
+        // ==========================================
+        // LOGOUT MÉDICO - USANDO AUTHSERVICE
+        // ==========================================
+        
         document.getElementById('logoutBtn').addEventListener('click', async () => {
             if (confirm('Tem certeza que deseja sair da plataforma médica?')) {
-                await authService.logout();
-                window.location.href = '/';
+                console.log('🚪 Iniciando logout via authService...');
+                
+                try {
+                    await authService.logout();
+                    console.log('✅ Logout realizado com sucesso!');
+                    alert('Logout realizado com sucesso!');
+                    window.location.href = '/api/v1/auth/login/';
+                } catch (error) {
+                    console.error('❌ Erro no logout:', error);
+                    // Fallback: limpar dados manualmente
+                    localStorage.clear();
+                    alert('Logout realizado (modo offline)');
+                    window.location.href = '/api/v1/auth/login/';
+                }
             }
         });
+        
+        console.log('✅ Dashboard médico inicializado com authService');
     </script>
 </body>
 </html>

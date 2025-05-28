@@ -1,12 +1,14 @@
----
-// Página de Login Médico - Layout Expandido
----
-
 <html lang="pt-br">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login Médico - Dr. Exys</title>
+    <title>Entrar - Dr. Exys</title>
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    
     <style>
         * {
             margin: 0;
@@ -15,172 +17,277 @@
         }
         
         body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background: linear-gradient(135deg, #f0fdfa 0%, #ccfbf1 30%, #ffffff 70%, #f8fafc 100%);
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            background-color: #f8feff;
             min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        /* Header */
+        .header {
+            background: #FFF;
+            padding: 1rem 2rem;
+            box-shadow: 0 1px 0 rgba(34, 84, 116, 0.1);
+        }
+        
+        .logo-container {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-family: 'Outfit', sans-serif;
+            font-size: 1.5rem;
+            font-weight: 700;
+            background: linear-gradient(135deg, #225474 0%, #29A8AF 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        .logo-icon {
+            font-size: 2rem;
+        }
+        
+        /* Back button */
+        .back-container {
+            text-align: center;
+            padding: 2rem;
+            max-width: 600px;
+            margin: 0 auto;
+            width: 100%;
+        }
+        
+        .back-button {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: #225474;
+            text-decoration: none;
+            font-size: 0.95rem;
+            font-weight: 500;
+            font-family: 'Inter', sans-serif;
+            transition: opacity 0.2s;
+        }
+        
+        .back-button:hover {
+            opacity: 0.8;
+        }
+        
+        /* Main container */
+        .main-container {
+            flex: 1;
             display: flex;
             align-items: center;
             justify-content: center;
             padding: 2rem;
         }
         
-        .login-container {
-            background: rgba(255, 255, 255, 0.95);
-            padding: 3rem;
-            border-radius: 20px;
-            box-shadow: 0 20px 40px rgba(13, 115, 119, 0.15);
+        .login-card {
+            background: #FFF;
+            border-radius: 16px;
+            padding: 4rem;
             width: 100%;
-            max-width: 500px;
-            margin: 20px;
-            backdrop-filter: blur(10px);
-            border: 1px solid rgba(13, 115, 119, 0.1);
+            max-width: 680px;
+            box-shadow: 0 8px 32px rgba(34, 84, 116, 0.12);
+            border: 1px solid rgba(34, 84, 116, 0.08);
         }
         
-        .logo {
+        .login-title {
+            font-family: 'Outfit', sans-serif;
+            font-size: 2.5rem;
+            font-weight: 600;
+            color: #29A8AF;
             text-align: center;
             margin-bottom: 2.5rem;
         }
         
-        .logo h1 {
-            font-size: 3em;
-            margin-bottom: 0.8rem;
-            background: linear-gradient(135deg, #0d7377 0%, #14a085 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-        }
-        
-        .logo p {
-            color: #0d7377;
-            font-size: 1.2em;
-            font-weight: 500;
-        }
-        
-        .medical-badge {
-            background: linear-gradient(135deg, #0d7377 0%, #14a085 100%);
-            color: white;
-            padding: 0.8rem 1.5rem;
-            border-radius: 25px;
-            font-size: 1em;
-            font-weight: 600;
-            margin: 1.5rem 0;
-            text-align: center;
-            box-shadow: 0 4px 12px rgba(13, 115, 119, 0.2);
-        }
-        
-        .medical-info {
-            background: rgba(240, 253, 250, 0.8);
-            padding: 1.5rem;
-            border-radius: 12px;
+        /* Social buttons */
+        .social-buttons {
+            display: flex;
+            gap: 1rem;
             margin-bottom: 2rem;
-            border-left: 5px solid #14a085;
-            backdrop-filter: blur(5px);
         }
         
-        .medical-info h4 {
-            color: #0d7377;
-            margin-bottom: 0.8rem;
-            font-size: 1.1em;
-            font-weight: 600;
+        .social-btn {
+            flex: 1;
+            padding: 0.875rem;
+            border: 1px solid rgba(34, 84, 116, 0.2);
+            border-radius: 8px;
+            background: #FFF;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.2s;
+            text-decoration: none;
+            color: #225474;
+            font-weight: 500;
+            font-family: 'Inter', sans-serif;
+            gap: 0.5rem;
         }
         
-        .medical-info p {
-            color: #059669;
-            font-size: 0.95em;
-            line-height: 1.5;
+        .social-btn:hover {
+            background: #f8feff;
+            border-color: #225474;
         }
         
+        .social-btn img {
+            width: 20px;
+            height: 20px;
+        }
+        
+        .divider {
+            text-align: center;
+            margin: 2rem 0;
+            color: #64748b;
+            font-size: 0.875rem;
+            font-family: 'Inter', sans-serif;
+        }
+        
+        /* Form elements */
         .form-group {
             margin-bottom: 2rem;
         }
         
-        label {
+        .form-label {
             display: block;
-            margin-bottom: 0.8rem;
-            font-weight: 600;
-            color: #0d7377;
-            font-size: 1em;
-        }
-        
-        input {
-            width: 100%;
-            padding: 1.2rem;
-            border: 2px solid rgba(13, 115, 119, 0.2);
-            border-radius: 12px;
-            font-size: 1.1rem;
-            transition: all 0.3s ease;
-            background: rgba(255, 255, 255, 0.9);
-            backdrop-filter: blur(5px);
-        }
-        
-        input:focus {
-            outline: none;
-            border-color: #0d7377;
-            box-shadow: 0 0 0 4px rgba(13, 115, 119, 0.1);
-            background: rgba(255, 255, 255, 1);
-        }
-        
-        input::placeholder {
-            color: #94a3b8;
+            margin-bottom: 0.75rem;
+            color: #225474;
             font-size: 1rem;
+            font-weight: 600;
+            font-family: 'Inter', sans-serif;
         }
         
-        /* Indicadores de validação */
-        .field-valid {
-            border-color: #14a085 !important;
-            box-shadow: 0 0 0 4px rgba(20, 160, 133, 0.1) !important;
-        }
-
-        .field-invalid {
-            border-color: #ef4444 !important;
-            box-shadow: 0 0 0 4px rgba(239, 68, 68, 0.1) !important;
-        }
-
-        .field-error {
-            color: #ef4444;
-            font-size: 0.9em;
-            margin-top: 0.6rem;
-            display: none;
-            font-weight: 500;
-        }
-        
-        .btn {
+        .form-input {
             width: 100%;
-            padding: 1.3rem;
-            background: linear-gradient(135deg, #0d7377 0%, #14a085 100%);
-            color: white;
+            padding: 1.25rem 1.5rem;
+            border: 1px solid rgba(34, 84, 116, 0.2);
+            border-radius: 10px;
+            font-size: 1.1rem;
+            font-family: 'Inter', sans-serif;
+            transition: all 0.2s;
+            background: #FFF;
+        }
+        
+        .form-input:focus {
+            outline: none;
+            border-color: #29A8AF;
+            box-shadow: 0 0 0 3px rgba(41, 168, 175, 0.1);
+        }
+        
+        .form-input::placeholder {
+            color: #94a3b8;
+        }
+        
+        /* Password field with toggle */
+        .password-field {
+            position: relative;
+        }
+        
+        .password-toggle {
+            position: absolute;
+            right: 1rem;
+            top: 50%;
+            transform: translateY(-50%);
+            background: none;
             border: none;
-            border-radius: 12px;
+            cursor: pointer;
+            color: #64748b;
+            padding: 0.25rem;
+        }
+        
+        .password-toggle:hover {
+            color: #29A8AF;
+        }
+        
+        /* Submit button */
+        .submit-btn {
+            width: 100%;
+            padding: 1.25rem;
+            background: linear-gradient(135deg, #225474 0%, #29A8AF 100%);
+            color: #FFF;
+            border: none;
+            border-radius: 10px;
             font-size: 1.2rem;
             font-weight: 600;
+            font-family: 'Outfit', sans-serif;
             cursor: pointer;
-            transition: all 0.3s ease;
-            margin-bottom: 1.5rem;
-            box-shadow: 0 4px 12px rgba(13, 115, 119, 0.2);
+            transition: all 0.2s;
+            margin-top: 1.5rem;
+            box-shadow: 0 4px 16px rgba(34, 84, 116, 0.25);
         }
         
-        .btn:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 8px 25px rgba(13, 115, 119, 0.3);
-        }
-        
-        .btn:active {
+        .submit-btn:hover {
             transform: translateY(-1px);
+            box-shadow: 0 4px 16px rgba(34, 84, 116, 0.3);
         }
         
-        .btn:disabled {
-            opacity: 0.7;
+        .submit-btn:active {
+            transform: translateY(0);
+        }
+        
+        .submit-btn:disabled {
+            opacity: 0.6;
             cursor: not-allowed;
             transform: none;
         }
         
-        .message {
-            padding: 1.2rem;
-            border-radius: 12px;
-            margin-bottom: 1.5rem;
+        /* Links */
+        .login-link {
             text-align: center;
-            font-weight: 600;
+            margin-top: 2rem;
+            color: #64748b;
             font-size: 1rem;
+            font-family: 'Inter', sans-serif;
+        }
+        
+        .login-link a {
+            color: #29A8AF;
+            text-decoration: none;
+            font-weight: 600;
+        }
+        
+        .login-link a:hover {
+            text-decoration: underline;
+        }
+        
+        /* Terms */
+        .terms {
+            margin-top: 2rem;
+            text-align: center;
+            font-size: 0.875rem;
+            color: #64748b;
+            line-height: 1.6;
+            font-family: 'Inter', sans-serif;
+        }
+        
+        .terms a {
+            color: #29A8AF;
+            text-decoration: underline;
+        }
+        
+        /* Medical badge */
+        .medical-badge {
+            background: linear-gradient(120deg, #f8feff 0%, rgba(41, 168, 175, 0.1) 100%);
+            border: 1px solid rgba(34, 84, 116, 0.2);
+            color: #225474;
+            padding: 1rem 1.5rem;
+            border-radius: 10px;
+            margin-bottom: 2rem;
+            text-align: center;
+            font-size: 1rem;
+            font-weight: 500;
+            font-family: 'Inter', sans-serif;
+        }
+        
+        /* Messages */
+        .message {
+            padding: 0.875rem 1rem;
+            border-radius: 8px;
+            margin-bottom: 1rem;
+            font-size: 0.875rem;
+            font-family: 'Inter', sans-serif;
+            text-align: center;
         }
         
         .message.success {
@@ -195,47 +302,22 @@
             border: 1px solid rgba(239, 68, 68, 0.3);
         }
         
-        .link {
-            text-align: center;
-            margin: 1.5rem 0;
-        }
-        
-        .link a {
-            color: #0d7377;
-            text-decoration: none;
-            font-weight: 600;
-            font-size: 1rem;
-            transition: all 0.3s ease;
-            padding: 0.5rem;
-            border-radius: 8px;
-        }
-        
-        .link a:hover {
-            color: #14a085;
-            text-decoration: underline;
-            background: rgba(13, 115, 119, 0.05);
-        }
-        
+        /* Loading */
         .loading {
             display: none;
             text-align: center;
-            margin: 1.5rem 0;
+            margin: 1rem 0;
+            font-family: 'Inter', sans-serif;
         }
         
         .spinner {
-            border: 4px solid rgba(13, 115, 119, 0.1);
-            border-top: 4px solid #0d7377;
+            border: 3px solid rgba(34, 84, 116, 0.1);
+            border-top: 3px solid #29A8AF;
             border-radius: 50%;
-            width: 40px;
-            height: 40px;
-            animation: spin 1s linear infinite;
-            margin: 0 auto 1rem;
-        }
-        
-        .loading p {
-            color: #0d7377;
-            font-weight: 500;
-            font-size: 1rem;
+            width: 32px;
+            height: 32px;
+            animation: spin 0.8s linear infinite;
+            margin: 0 auto 0.5rem;
         }
         
         @keyframes spin {
@@ -243,96 +325,138 @@
             100% { transform: rotate(360deg); }
         }
         
+        /* Responsive */
         @media (max-width: 768px) {
-            body {
-                padding: 1rem;
+            .login-card {
+                padding: 2.5rem;
+                max-width: 90%;
             }
             
-            .login-container {
-                padding: 2rem;
-                max-width: 100%;
+            .login-title {
+                font-size: 2rem;
             }
             
-            .logo h1 {
-                font-size: 2.5em;
-            }
-            
-            .logo p {
-                font-size: 1.1em;
-            }
-            
-            input {
-                padding: 1rem;
+            .form-input {
+                padding: 1rem 1.25rem;
                 font-size: 1rem;
             }
             
-            .btn {
-                padding: 1.1rem;
+            .submit-btn {
+                padding: 1rem;
                 font-size: 1.1rem;
             }
         }
         
         @media (max-width: 480px) {
-            .login-container {
-                padding: 1.5rem;
+            .login-card {
+                padding: 2rem;
             }
             
-            .logo h1 {
-                font-size: 2.2em;
+            .login-title {
+                font-size: 1.75rem;
+            }
+            
+            .social-buttons {
+                flex-direction: column;
             }
         }
     </style>
 </head>
 <body>
-    <div class="login-container">
-        <div class="logo">
-            <h1>🏥 Dr. Exys</h1>
-            <p>Portal de Profissionais de Saúde</p>
+    <!-- Header -->
+    <header class="header">
+        <div class="logo-container">
+            <span class="logo-icon">🏥</span>
+            <span>DR. EXYS</span>
         </div>
+    </header>
+
+    
+    
+
+    <!-- Main content -->
+    <main class="main-container">
+
+    
+        <div class="login-card">
+
         
-        <div class="medical-badge">
-            🩺 Acesso Restrito - Profissionais de Saúde
-        </div>
-        
-        <div class="medical-info">
-            <h4>Área Médica Especializada</h4>
-            <p>IA especializada, WhatsApp para pacientes e sistema BPO financeiro integrados em uma plataforma única.</p>
-        </div>
-        
-        <div id="message"></div>
-        
-        <form id="loginForm">
-            <div class="form-group">
-                <label for="email">Email Profissional:</label>
-                <input type="email" id="email" name="email" required placeholder="medico@clinica.com">
-                <div class="field-error" id="email-error"></div>
+            <h1 class="login-title">Entrar</h1>
+            
+            <!-- Medical badge -->
+            <div class="medical-badge">
+                🩺 Portal exclusivo para profissionais de saúde
             </div>
             
-            <div class="form-group">
-                <label for="password">Senha:</label>
-                <input type="password" id="password" name="password" required placeholder="Sua senha médica">
-                <div class="field-error" id="password-error"></div>
+            <!-- Message container -->
+            <div id="message"></div>
+            
+            <!-- Login form -->
+            <form id="loginForm">
+                <div class="form-group">
+                    <label class="form-label" for="email">Email</label>
+                    <input 
+                        type="email" 
+                        id="email" 
+                        name="email" 
+                        class="form-input" 
+                        placeholder="dr.joao@clinica.com" 
+                        required
+                    >
+                </div>
+                
+                <div class="form-group">
+                    <label class="form-label" for="password">Senha</label>
+                    <div class="password-field">
+                        <input 
+                            type="password" 
+                            id="password" 
+                            name="password" 
+                            class="form-input" 
+                            placeholder="Digite sua senha" 
+                            required
+                        >
+                        <button type="button" class="password-toggle" onclick="togglePassword()">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/>
+                                <circle cx="12" cy="12" r="3"/>
+                            </svg>
+                        </button>
+                    </div>
+                </div>
+                
+                <!-- Loading indicator -->
+                <div class="loading" id="loading">
+                    <div class="spinner"></div>
+                    <p>Autenticando...</p>
+                </div>
+                
+                <button type="submit" class="submit-btn" id="submitBtn">
+                    Entrar
+                </button>
+            </form>
+            
+            <div class="login-link">
+                Novo por aqui? <a href="/auth/register">Cadastre-se</a>
             </div>
             
-            <div class="loading" id="loading">
-                <div class="spinner"></div>
-                <p>Autenticando profissional...</p>
-            </div>
             
-            <button type="submit" class="btn" id="submitBtn">Acessar Plataforma Médica</button>
-        </form>
-        
-        <div class="link">
-            <a href="/auth/register">Novo profissional? Cadastre-se aqui</a>
-        </div>
-        
-        <div class="link">
-            <a href="/">← Voltar para o início</a>
-        </div>
+
+            <!-- Back button  -->
+    <div class="back-container">
+        <a href="/" class="back-button">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M19 12H5M12 19l-7-7 7-7"/>
+            </svg>
+            Voltar
+        </a>
     </div>
 
+        </div>
+    </main>
+
     <script type="module">
-        // AuthService inline - mesmo padrão do register
+        // AuthService
         const authService = {
             async login(credentials) {
                 const response = await fetch('http://192.168.1.4:8081/api/v1/auth/login/', {
@@ -348,29 +472,39 @@
                 
                 const data = await response.json();
                 
-                // Salvar tokens no localStorage
+                // Salvar tokens
                 if (data.tokens) {
-                    localStorage.setItem('medical_access_token', data.tokens.access);
-                    localStorage.setItem('medical_refresh_token', data.tokens.refresh);
-                    localStorage.setItem('medical_user', JSON.stringify(data.user));
+                    // Usando variáveis em memória ao invés de localStorage
+                    window.medicalTokens = {
+                        access: data.tokens.access,
+                        refresh: data.tokens.refresh,
+                        user: data.user
+                    };
                 }
                 
                 return data;
             },
             
             isAuthenticated() {
-                return !!localStorage.getItem('medical_access_token');
+                return !!(window.medicalTokens && window.medicalTokens.access);
             }
         };
         
+        // Toggle password visibility
+        window.togglePassword = function() {
+            const passwordInput = document.getElementById('password');
+            const type = passwordInput.getAttribute('type') === 'password' ? 'text' : 'password';
+            passwordInput.setAttribute('type', type);
+        }
+        
+        // Form handling
         const form = document.getElementById('loginForm');
         const submitBtn = document.getElementById('submitBtn');
         const loading = document.getElementById('loading');
         const messageDiv = document.getElementById('message');
         
-        // Redirecionar se profissional já estiver logado
+        // Check if already authenticated
         if (authService.isAuthenticated()) {
-            console.log('Usuário já logado, redirecionando...');
             window.location.href = '/dashboard/medico';
         }
         
@@ -378,65 +512,23 @@
             messageDiv.innerHTML = `<div class="message ${type}">${message}</div>`;
             setTimeout(() => {
                 messageDiv.innerHTML = '';
-            }, 7000);
+            }, 5000);
         }
         
         function setLoading(isLoading) {
             if (isLoading) {
                 loading.style.display = 'block';
                 submitBtn.disabled = true;
-                submitBtn.textContent = 'Autenticando...';
+                submitBtn.textContent = 'Entrando...';
             } else {
                 loading.style.display = 'none';
                 submitBtn.disabled = false;
-                submitBtn.textContent = 'Acessar Plataforma Médica';
+                submitBtn.textContent = 'Entrar';
             }
         }
-
-        // Validação visual em tempo real
-        const emailInput = document.getElementById('email');
-        const passwordInput = document.getElementById('password');
-
-        emailInput.addEventListener('input', () => {
-            const email = emailInput.value;
-            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-            
-            if (email && emailRegex.test(email)) {
-                emailInput.classList.add('field-valid');
-                emailInput.classList.remove('field-invalid');
-                document.getElementById('email-error').style.display = 'none';
-            } else if (email) {
-                emailInput.classList.add('field-invalid');
-                emailInput.classList.remove('field-valid');
-                document.getElementById('email-error').textContent = 'Email inválido';
-                document.getElementById('email-error').style.display = 'block';
-            } else {
-                emailInput.classList.remove('field-valid', 'field-invalid');
-                document.getElementById('email-error').style.display = 'none';
-            }
-        });
-
-        passwordInput.addEventListener('input', () => {
-            const password = passwordInput.value;
-            
-            if (password.length >= 3) {
-                passwordInput.classList.add('field-valid');
-                passwordInput.classList.remove('field-invalid');
-                document.getElementById('password-error').style.display = 'none';
-            } else if (password) {
-                passwordInput.classList.add('field-invalid');
-                passwordInput.classList.remove('field-valid');
-                document.getElementById('password-error').textContent = 'Senha muito curta';
-                document.getElementById('password-error').style.display = 'block';
-            } else {
-                passwordInput.classList.remove('field-valid', 'field-invalid');
-                document.getElementById('password-error').style.display = 'none';
-            }
-        });
         
         form.addEventListener('submit', async (e) => {
             e.preventDefault();
-            console.log('🔧 Login form submetido!'); // Debug
             
             const formData = new FormData(e.target);
             const credentials = {
@@ -444,40 +536,24 @@
                 password: formData.get('password')
             };
             
-            console.log('🔧 Dados do login:', credentials); // Debug
-            console.log('🔧 URL da API:', 'http://192.168.1.4:8081/api/v1/auth/login/'); // Debug
-            
-            // Validação básica
-            if (!credentials.email || !credentials.password) {
-                showMessage('Por favor, preencha todos os campos');
-                return;
-            }
-            
             setLoading(true);
             
             try {
-                console.log('🔧 Enviando para API de login...'); // Debug
                 const response = await authService.login(credentials);
-                console.log('🔧 Resposta da API login:', response); // Debug
                 
                 if (response.success) {
-                    showMessage('Login médico realizado com sucesso! Redirecionando...', 'success');
-                    
+                    showMessage('Login realizado com sucesso!', 'success');
                     setTimeout(() => {
-                        console.log('🔧 Redirecionando para dashboard...');
                         window.location.href = '/dashboard/medico';
-                    }, 1500);
+                    }, 1000);
                 } else {
                     throw new Error(response.message || 'Erro no login');
                 }
                 
             } catch (error) {
-                console.error('🔧 Erro completo no login:', error); // Debug
-                
-                let errorMessage = 'Erro no login. Verifique suas credenciais médicas.';
+                let errorMessage = 'Erro ao fazer login. Verifique suas credenciais.';
                 
                 if (error.errors) {
-                    console.log('🔧 Erros da API:', error.errors); // Debug
                     const errors = [];
                     for (const [field, messages] of Object.entries(error.errors)) {
                         if (Array.isArray(messages)) {
@@ -491,17 +567,11 @@
                     errorMessage = error.message;
                 }
                 
-                console.log('🔧 Mensagem de erro final:', errorMessage); // Debug
                 showMessage(errorMessage);
             } finally {
                 setLoading(false);
             }
         });
-
-        // Debug inicial
-        console.log('🔧 Página de login carregada');
-        console.log('🔧 AuthService disponível:', !!authService);
-        console.log('🔧 Já autenticado?', authService.isAuthenticated());
     </script>
 </body>
 </html>

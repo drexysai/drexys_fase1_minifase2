@@ -8,10 +8,12 @@ class UserRegistrationSerializer(serializers.ModelSerializer):
     Serializer SIMPLIFICADO para registro de usuários
     
     CAMPOS OBRIGATÓRIOS:
-    - email (único)
-    - username (único)
+    - email (único) - usado para login
     - password (com validação)
     - password_confirm (confirmação)
+    
+    CAMPOS AUTOMÁTICOS:
+    - username (gerado automaticamente a partir do email)
     
     CAMPOS OPCIONAIS (removidos temporariamente):
     - first_name, last_name
@@ -24,10 +26,10 @@ class UserRegistrationSerializer(serializers.ModelSerializer):
         model = User
         fields = (
             'email', 
-            'username', 
             'password', 
             'password_confirm'
         )
+        # CAMPO REMOVIDO: 'username' - será gerado automaticamente
         # CAMPOS REMOVIDOS TEMPORARIAMENTE:
         # 'first_name', 'last_name', 'phone', 'crm', 'especialidade'
     
@@ -44,20 +46,6 @@ class UserRegistrationSerializer(serializers.ModelSerializer):
         if User.objects.filter(email=value).exists():
             raise serializers.ValidationError("Este email já está em uso")
         return value.lower()
-    
-    def validate_username(self, value):
-        """
-        Validação de username único
-        Permite letras, números, underscore e hífen
-        """
-        if User.objects.filter(username=value).exists():
-            raise serializers.ValidationError("Este username já está em uso")
-        
-        # Validação de formato (opcional)
-        if not re.match(r'^[a-zA-Z0-9_-]+$', value):
-            raise serializers.ValidationError("Username deve conter apenas letras, números, _ ou -")
-        
-        return value
     
     def validate_password(self, value):
         """
@@ -80,11 +68,12 @@ class UserRegistrationSerializer(serializers.ModelSerializer):
     def create(self, validated_data):
         """
         Criação do usuário com dados mínimos
+        Username será gerado automaticamente pelo CustomUserManager
         """
         # Remove password_confirm dos dados
         validated_data.pop('password_confirm')
         
-        # Cria usuário com dados básicos
+        # Cria usuário com dados básicos - username será gerado automaticamente
         # Campos opcionais ficarão null/empty até serem preenchidos
         user = User.objects.create_user(**validated_data)
         return user
@@ -92,7 +81,7 @@ class UserRegistrationSerializer(serializers.ModelSerializer):
 class UserLoginSerializer(serializers.Serializer):
     """
     Serializer para login simplificado
-    Login feito com email e senha
+    Login feito APENAS com email e senha
     """
     email = serializers.EmailField()
     password = serializers.CharField()
@@ -102,7 +91,7 @@ class UserLoginSerializer(serializers.Serializer):
         password = attrs.get('password')
         
         if email and password:
-            # Autentica usando email como username
+            # Autentica usando email como username (Django internamente)
             user = authenticate(username=email, password=password)
             if not user:
                 raise serializers.ValidationError('Email ou senha incorretos')
@@ -118,16 +107,18 @@ class UserSerializer(serializers.ModelSerializer):
     """
     full_name = serializers.SerializerMethodField()
     profile_complete = serializers.SerializerMethodField()
+    display_name = serializers.SerializerMethodField()
     
     class Meta:
         model = User
         fields = (
             'id', 
             'email', 
-            'username', 
+            'username',  # Mostrado para referência, mas gerado automaticamente
             'first_name', 
             'last_name', 
-            'full_name', 
+            'full_name',
+            'display_name', 
             'phone', 
             'crm', 
             'especialidade', 
@@ -135,11 +126,22 @@ class UserSerializer(serializers.ModelSerializer):
             'profile_complete',
             'created_at'
         )
-        read_only_fields = ('id', 'created_at', 'full_name', 'profile_complete')
+        read_only_fields = (
+            'id', 
+            'username',  # Username é read-only pois é gerado automaticamente
+            'created_at', 
+            'full_name', 
+            'display_name',
+            'profile_complete'
+        )
     
     def get_full_name(self, obj):
-        """Retorna nome completo ou username se nome não estiver preenchido"""
+        """Retorna nome completo ou email se nome não estiver preenchido"""
         return obj.get_full_name()
+    
+    def get_display_name(self, obj):
+        """Retorna nome amigável para exibição"""
+        return obj.get_display_name()
     
     def get_profile_complete(self, obj):
         """Indica se o perfil está completo para sugerir preenchimento"""
@@ -162,6 +164,7 @@ class UserProfileUpdateSerializer(serializers.ModelSerializer):
             'crm', 
             'especialidade'
         )
+        # Email e username NÃO podem ser alterados após o cadastro
     
     def validate_crm(self, value):
         """Validação de CRM apenas se fornecido"""
@@ -186,3 +189,26 @@ class UserProfileUpdateSerializer(serializers.ModelSerializer):
             validated_data['is_medical_professional'] = True
         
         return super().update(instance, validated_data)
+
+# ==========================================
+# SERIALIZER EXTRA: Para resposta do registro
+# ==========================================
+class UserRegistrationResponseSerializer(serializers.ModelSerializer):
+    """
+    Serializer para resposta após registro bem-sucedido
+    Mostra dados básicos do usuário criado
+    """
+    display_name = serializers.SerializerMethodField()
+    
+    class Meta:
+        model = User
+        fields = (
+            'id',
+            'email',
+            'username',  # Gerado automaticamente
+            'display_name',
+            'created_at'
+        )
+    
+    def get_display_name(self, obj):
+        return obj.get_display_name()
