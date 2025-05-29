@@ -7,7 +7,11 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet" />
   <style>
-    * { margin: 0; padding: 0; box-sizing: border-box; }
+    * { 
+      margin: 0; 
+      padding: 0; 
+      box-sizing: border-box; 
+    }
 
     body {
       font-family: 'Inter', sans-serif;
@@ -19,52 +23,52 @@
 
     /* Header */
     .header {
-        background: #FFF;
-        padding: 1rem 2rem;
-        box-shadow: 0 1px 0 rgba(34, 84, 116, 0.1);
+      background: #FFF;
+      padding: 1rem 2rem;
+      box-shadow: 0 1px 0 rgba(34, 84, 116, 0.1);
     }
 
     .logo-container {
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-            font-family: 'Outfit', sans-serif;
-            font-size: 1.5rem;
-            font-weight: 700;
-            background: linear-gradient(135deg, #225474 0%, #29A8AF 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-        }
-        
-        .logo-icon {
-            font-size: 2rem;
-        }
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-family: 'Outfit', sans-serif;
+      font-size: 1.5rem;
+      font-weight: 700;
+      background: linear-gradient(135deg, #225474 0%, #29A8AF 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    
+    .logo-icon {
+      font-size: 2rem;
+    }
 
-        /* Back button */
-        .back-container {
-            text-align: center;
-            padding: 2rem;
-            max-width: 600px;
-            margin: 0 auto;
-            width: 100%;
-        }
+    /* Back button */
+    .back-container {
+      text-align: center;
+      padding: 2rem;
+      max-width: 600px;
+      margin: 0 auto;
+      width: 100%;
+    }
 
-        .back-button {
-            display: inline-flex;
-            align-items: center;
-            gap: 0.5rem;
-            color: #225474;
-            text-decoration: none;
-            font-size: 0.95rem;
-            font-weight: 500;
-            font-family: 'Inter', sans-serif;
-            transition: opacity 0.2s;
-        }
-        
-        .back-button:hover {
-            opacity: 0.8;
-        }
+    .back-button {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      color: #225474;
+      text-decoration: none;
+      font-size: 0.95rem;
+      font-weight: 500;
+      font-family: 'Inter', sans-serif;
+      transition: opacity 0.2s;
+    }
+    
+    .back-button:hover {
+      opacity: 0.8;
+    }
 
     .main-container {
       flex: 1;
@@ -94,7 +98,6 @@
       font-weight: 600;
       font-family: 'Outfit', sans-serif;
       color: #29A8AF;
-      
     }
 
     .logo p {
@@ -118,21 +121,15 @@
       margin-bottom: 2rem;
     }
 
-    .form-input::placeholder {
-            color: #94a3b8;
-        }
-
-
     .form-row {
-  display: flex;
-  gap: 1rem;
-  margin-bottom: 2rem;
-}
+      display: flex;
+      gap: 1rem;
+      margin-bottom: 2rem;
+    }
 
-.form-row .half-width {
-  flex: 1;
-}
-
+    .form-row .half-width {
+      flex: 1;
+    }
 
     label {
       display: block;
@@ -148,12 +145,19 @@
       border: 1px solid rgba(34, 84, 116, 0.2);
       border-radius: 10px;
       font-size: 1.1rem;
+      font-family: 'Inter', sans-serif;
+      transition: all 0.2s;
+      background: #FFF;
     }
 
     input:focus {
       outline: none;
       border-color: #29A8AF;
       box-shadow: 0 0 0 3px rgba(41, 168, 175, 0.1);
+    }
+
+    input::placeholder {
+      color: #94a3b8;
     }
 
     .submit-btn {
@@ -165,6 +169,7 @@
       border-radius: 10px;
       font-size: 1.2rem;
       font-weight: 600;
+      font-family: 'Outfit', sans-serif;
       cursor: pointer;
       transition: all 0.2s;
       box-shadow: 0 4px 16px rgba(34, 84, 116, 0.25);
@@ -175,10 +180,17 @@
       box-shadow: 0 4px 16px rgba(34, 84, 116, 0.3);
     }
 
+    .submit-btn:disabled {
+      opacity: 0.6;
+      cursor: not-allowed;
+      transform: none;
+    }
+
     .link {
       text-align: center;
       margin-top: 2rem;
       font-size: 1rem;
+      color: #64748b;
     }
 
     .link a {
@@ -192,21 +204,19 @@
     }
 
     /* Terms */
-        .terms {    
-            text-align: center;
-            font-size: 0.875rem;
-            color: #64748b;
-            line-height: 1.6;
-            font-family: 'Inter', sans-serif;
-            margin-bottom: -2rem;
-        }
-        
-        .terms a {
-            color: #29A8AF;
-            text-decoration: underline;
-        }
-
+    .terms {    
+      text-align: center;
+      font-size: 0.875rem;
+      color: #64748b;
+      line-height: 1.6;
+      font-family: 'Inter', sans-serif;
+      margin-bottom: -2rem;
+    }
     
+    .terms a {
+      color: #29A8AF;
+      text-decoration: underline;
+    }
 
     .message {
       padding: 1rem;
@@ -214,6 +224,7 @@
       margin-bottom: 1rem;
       text-align: center;
       font-weight: 500;
+      font-family: 'Inter', sans-serif;
     }
 
     .message.success {
@@ -227,17 +238,263 @@
       color: #991b1b;
       border: 1px solid rgba(239, 68, 68, 0.3);
     }
+
+    /* Loading */
+    .loading {
+      display: none;
+      text-align: center;
+      margin: 1rem 0;
+      font-family: 'Inter', sans-serif;
+    }
+
+    .spinner {
+      border: 3px solid rgba(34, 84, 116, 0.1);
+      border-top: 3px solid #29A8AF;
+      border-radius: 50%;
+      width: 32px;
+      height: 32px;
+      animation: spin 0.8s linear infinite;
+      margin: 0 auto 0.5rem;
+    }
+
+    @keyframes spin {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
+    }
+
+    /* Mobile Responsiveness */
+    @media (max-width: 768px) {
+      .header {
+        padding: 1rem;
+      }
+      
+      .logo-container {
+        font-size: 1.3rem;
+      }
+      
+      .logo-icon {
+        font-size: 1.8rem;
+      }
+      
+      .main-container {
+        padding: 1rem;
+      }
+      
+      .register-card {
+        padding: 2.5rem;
+        max-width: 100%;
+        margin: 0;
+        border-radius: 12px;
+      }
+      
+      .logo h1 {
+        font-size: 2rem;
+      }
+      
+      .medical-badge {
+        padding: 0.875rem 1.25rem;
+        font-size: 0.95rem;
+        margin: 1.25rem 0 1.75rem;
+      }
+      
+      .form-group {
+        margin-bottom: 1.75rem;
+      }
+      
+      .form-row {
+        flex-direction: column;
+        gap: 0;
+        margin-bottom: 0;
+      }
+      
+      .form-row .half-width {
+        margin-bottom: 1.75rem;
+      }
+      
+      label {
+        font-size: 0.95rem;
+        margin-bottom: 0.5rem;
+      }
+      
+      input {
+        padding: 1rem 1.25rem;
+        font-size: 1rem;
+        border-radius: 8px;
+      }
+      
+      .submit-btn {
+        padding: 1rem;
+        font-size: 1.1rem;
+        border-radius: 8px;
+      }
+      
+      .back-container {
+        padding: 1.5rem;
+      }
+      
+      .terms {
+        font-size: 0.8rem;
+        margin-bottom: -1.5rem;
+        padding: 0 0.5rem;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .header {
+        padding: 0.875rem;
+      }
+      
+      .logo-container {
+        font-size: 1.2rem;
+      }
+      
+      .logo-icon {
+        font-size: 1.6rem;
+      }
+      
+      .main-container {
+        padding: 0.5rem;
+      }
+      
+      .register-card {
+        padding: 2rem;
+        border-radius: 10px;
+      }
+      
+      .logo h1 {
+        font-size: 1.75rem;
+      }
+      
+      .medical-badge {
+        padding: 0.75rem 1rem;
+        font-size: 0.9rem;
+        margin: 1rem 0 1.5rem;
+      }
+      
+      .form-group {
+        margin-bottom: 1.5rem;
+      }
+      
+      .form-row .half-width {
+        margin-bottom: 1.5rem;
+      }
+      
+      label {
+        font-size: 0.9rem;
+        margin-bottom: 0.5rem;
+      }
+      
+      input {
+        padding: 0.875rem 1rem;
+        font-size: 0.95rem;
+      }
+      
+      .submit-btn {
+        padding: 0.875rem;
+        font-size: 1rem;
+      }
+      
+      .link {
+        font-size: 0.95rem;
+        margin-top: 1.5rem;
+      }
+      
+      .back-container {
+        padding: 1rem;
+      }
+      
+      .back-button {
+        font-size: 0.9rem;
+      }
+      
+      .terms {
+        font-size: 0.75rem;
+        margin-bottom: -1rem;
+      }
+    }
+
+    @media (max-width: 360px) {
+      .register-card {
+        padding: 1.5rem;
+      }
+      
+      .logo h1 {
+        font-size: 1.5rem;
+      }
+      
+      .medical-badge {
+        padding: 0.625rem 0.875rem;
+        font-size: 0.85rem;
+      }
+      
+      input {
+        padding: 0.75rem 0.875rem;
+        font-size: 0.9rem;
+      }
+      
+      .submit-btn {
+        padding: 0.75rem;
+        font-size: 0.95rem;
+      }
+    }
+
+    /* Landscape orientation on small devices */
+    @media (max-height: 600px) and (orientation: landscape) {
+      .main-container {
+        padding: 1rem;
+      }
+      
+      .register-card {
+        padding: 2rem;
+      }
+      
+      .logo h1 {
+        font-size: 1.75rem;
+        margin-bottom: 0.5rem;
+      }
+      
+      .medical-badge {
+        margin: 1rem 0 1.5rem;
+        padding: 0.75rem 1rem;
+      }
+      
+      .form-group {
+        margin-bottom: 1.25rem;
+      }
+      
+      .form-row .half-width {
+        margin-bottom: 1.25rem;
+      }
+      
+      .back-container {
+        padding: 1rem;
+      }
+    }
+
+    /* Touch targets for better mobile interaction */
+    @media (hover: none) and (pointer: coarse) {
+      input, .submit-btn, .back-button, .link a {
+        min-height: 44px;
+      }
+      
+      .submit-btn {
+        padding: 1rem;
+      }
+      
+      input {
+        padding: 1rem 1.25rem;
+      }
+    }
   </style>
 </head>
 <body>
-
-<!-- Header -->
-    <header class="header">
-        <div class="logo-container">
-            <span class="logo-icon">🏥</span>
-            <span>DR. EXYS</span>
-        </div>
-    </header>
+  <!-- Header -->
+  <header class="header">
+    <div class="logo-container">
+      <span class="logo-icon">🏥</span>
+      <span>DR. EXYS</span>
+    </div>
+  </header>
 
   <main class="main-container">
     <div class="register-card">
@@ -251,28 +508,28 @@
 
       <div id="message"></div>
 
+      <!-- Loading indicator -->
+      <div class="loading" id="loading">
+        <div class="spinner"></div>
+        <p>Criando conta...</p>
+      </div>
+
       <form id="registerForm">
         <div class="form-group">
           <label for="email">Email</label>
-          <input class="form-input" type="email" id="email" name="email" required placeholder="dr.joao@clinica.com" />
+          <input class="form-input" type="email" id="email" name="email" required placeholder="dr.joao@clinica.com" autocomplete="email" />
         </div>
-        <!--
-        <div class="form-group">
-          <label for="username">Nome de Usuário</label>
-          <input class="form-input" type="text" id="username" name="username" required placeholder="dr_joao_silva" />
-        </div>
-        -->
 
         <div class="form-row">
-  <div class="form-group half-width">
-    <label for="password">Senha</label>
-    <input class="form-input" type="password" id="password" name="password" required placeholder="Sua senha segura" />
-  </div>
-  <div class="form-group half-width">
-    <label for="password_confirm">Confirmar Senha</label>
-    <input class="form-input" type="password" id="password_confirm" name="password_confirm" required placeholder="Confirme sua senha" />
-  </div>
-</div>
+          <div class="form-group half-width">
+            <label for="password">Senha</label>
+            <input class="form-input" type="password" id="password" name="password" required placeholder="Sua senha segura" autocomplete="new-password" />
+          </div>
+          <div class="form-group half-width">
+            <label for="password_confirm">Confirmar Senha</label>
+            <input class="form-input" type="password" id="password_confirm" name="password_confirm" required placeholder="Confirme sua senha" autocomplete="new-password" />
+          </div>
+        </div>
 
         <button type="submit" class="submit-btn" id="submitBtn">Criar Conta</button>
       </form>
@@ -281,27 +538,27 @@
         Já possui conta? <a href="/auth/login">Faça login aqui</a>
       </div>
 
-      <!-- Back button  -->
-    <div class="back-container">
+      <!-- Back button -->
+      <div class="back-container">
         <a href="/" class="back-button">
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                <path d="M19 12H5M12 19l-7-7 7-7"/>
-            </svg>
-            Voltar
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M19 12H5M12 19l-7-7 7-7"/>
+          </svg>
+          Voltar
         </a>
+      </div>
+
+      <div class="terms">
+        Ao continuar, você concorda com nossos <a href="/termos-uso">Termos de Uso</a> e confirma que leu nossa <a href="/politica-privacidade">Política de Privacidade</a>
+      </div>
     </div>
-
-    <div class="terms">
-                Ao continuar, você concorda com nossos <a href="/termos-uso">Termos de Uso</a> e confirma que leu nossa <a href="/politica-privacidade">Política de Privacidade</a>
-            </div>
-
-     
   </main>
 
   <script type="module">
     const form = document.getElementById('registerForm');
     const messageDiv = document.getElementById('message');
     const submitBtn = document.getElementById('submitBtn');
+    const loading = document.getElementById('loading');
 
     const authService = {
       async register(data) {
@@ -322,7 +579,21 @@
 
     function showMessage(msg, type = 'error') {
       messageDiv.innerHTML = `<div class="message ${type}">${msg}</div>`;
-      setTimeout(() => { messageDiv.innerHTML = ''; }, 6000);
+      setTimeout(() => { 
+        messageDiv.innerHTML = ''; 
+      }, 6000);
+    }
+
+    function setLoading(isLoading) {
+      if (isLoading) {
+        loading.style.display = 'block';
+        submitBtn.disabled = true;
+        submitBtn.textContent = 'Criando conta...';
+      } else {
+        loading.style.display = 'none';
+        submitBtn.disabled = false;
+        submitBtn.textContent = 'Criar Conta';
+      }
     }
 
     form.addEventListener('submit', async (e) => {
@@ -330,7 +601,6 @@
       const formData = new FormData(form);
       const data = {
         email: formData.get('email'),
-        username: formData.get('username'),
         password: formData.get('password'),
         password_confirm: formData.get('password_confirm')
       };
@@ -340,23 +610,64 @@
         return;
       }
 
+      if (data.password.length < 8) {
+        showMessage('A senha deve ter pelo menos 8 caracteres.');
+        return;
+      }
+
+      setLoading(true);
+
       try {
-        submitBtn.disabled = true;
-        submitBtn.textContent = 'Criando conta...';
-        await authService.register(data);
-        showMessage('Conta criada com sucesso! Redirecionando...', 'success');
-        setTimeout(() => {
-          window.location.href = '/auth/login';
-        }, 2000);
+        const response = await authService.register(data);
+        
+        if (response.success) {
+          showMessage('Conta criada com sucesso! Redirecionando...', 'success');
+          setTimeout(() => {
+            window.location.href = '/auth/login';
+          }, 2000);
+        } else {
+          throw new Error(response.message || 'Erro ao criar conta');
+        }
       } catch (error) {
-        let msg = 'Erro ao criar conta.';
-        if (error.message) msg = error.message;
-        showMessage(msg);
+        let errorMessage = 'Erro ao criar conta. Tente novamente.';
+        
+        if (error.errors) {
+          const errors = [];
+          for (const [field, messages] of Object.entries(error.errors)) {
+            if (Array.isArray(messages)) {
+              errors.push(...messages);
+            } else {
+              errors.push(messages);
+            }
+          }
+          errorMessage = errors.join(', ');
+        } else if (error.message) {
+          errorMessage = error.message;
+        }
+        
+        showMessage(errorMessage);
       } finally {
-        submitBtn.disabled = false;
-        submitBtn.textContent = 'Criar Conta Médica';
+        setLoading(false);
       }
     });
+
+    // Validação em tempo real para senhas
+    const passwordInput = document.getElementById('password');
+    const confirmPasswordInput = document.getElementById('password_confirm');
+
+    function validatePasswords() {
+      const password = passwordInput.value;
+      const confirmPassword = confirmPasswordInput.value;
+      
+      if (confirmPassword && password !== confirmPassword) {
+        confirmPasswordInput.setCustomValidity('As senhas não coincidem');
+      } else {
+        confirmPasswordInput.setCustomValidity('');
+      }
+    }
+
+    passwordInput.addEventListener('input', validatePasswords);
+    confirmPasswordInput.addEventListener('input', validatePasswords);
   </script>
 </body>
 </html>

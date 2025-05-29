@@ -6,6 +6,12 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Dr. Exys - Plataforma de Saúde Inteligente</title>
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    
     <style>
         * {
             margin: 0;
@@ -14,110 +20,105 @@
         }
         
         body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background: linear-gradient(135deg, #f0fdfa 0%, #ccfbf1 30%, #ffffff 70%, #f8fafc 100%);
-            color: #1e293b;
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            background-color: #f8feff;
+            color: #225474;
             min-height: 100vh;
         }
         
+
+        
+        /* Hero Section */
         .hero-section {
             min-height: 100vh;
             display: flex;
             align-items: center;
             justify-content: center;
-            padding: 2rem;
+            padding: 4rem 2rem;
+            background: linear-gradient(135deg, #f8feff 0%, rgba(41, 168, 175, 0.05) 50%, #FFF 100%);
         }
         
-        .container {
+        .hero-container {
             text-align: center;
-            padding: 3rem;
-            background: rgba(255, 255, 255, 0.95);
-            border-radius: 20px;
-            border: 1px solid rgba(13, 115, 119, 0.1);
-            box-shadow: 0 20px 40px rgba(13, 115, 119, 0.1);
             max-width: 900px;
-            margin: 2rem;
-            backdrop-filter: blur(10px);
+            margin: 0 auto;
         }
         
-        h1 {
-            font-size: 3.5em;
-            margin-bottom: 1rem;
-            background: linear-gradient(135deg, #0d7377 0%, #14a085 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            text-shadow: none;
+        .hero-logo {
+            width: 20rem;
+            height: 20rem;
+            object-fit: contain;      
         }
         
-        .subtitle {
-            font-size: 1.4em;
-            margin-bottom: 2rem;
-            color: #0d7377;
+        .hero-subtitle {
+            font-family: 'Outfit', sans-serif;
+            font-size: 1.5rem;
             font-weight: 500;
+            margin-bottom: 1.5rem;
+            color: #29A8AF;
         }
         
-        .description {
-            font-size: 1.1em;
-            margin-bottom: 3rem;
+        .hero-description {
+            font-family: 'Inter', sans-serif;
+            font-size: 1.2rem;
             line-height: 1.6;
-            color: #475569;
+            color: #64748b;
+            margin-bottom: 3rem;
             max-width: 700px;
             margin-left: auto;
             margin-right: auto;
-            margin-bottom: 3rem;
         }
         
-        .buttons {
+        .hero-buttons {
             display: flex;
             gap: 1.5rem;
             justify-content: center;
             flex-wrap: wrap;
-            margin-bottom: 3rem;
         }
         
         .btn {
-            padding: 1.2rem 2.5rem;
+            padding: 1.25rem 2.5rem;
             font-size: 1.1rem;
             font-weight: 600;
             text-decoration: none;
-            border-radius: 50px;
-            transition: all 0.3s ease;
+            border-radius: 10px;
+            transition: all 0.2s ease;
             display: inline-block;
-            border: 2px solid transparent;
-            cursor: pointer;
+            font-family: 'Outfit', sans-serif;
+            border: 1px solid transparent;
         }
         
         .btn-primary {
-            background: linear-gradient(135deg, #0d7377 0%, #14a085 100%);
-            color: white;
-            border: none;
+            background: linear-gradient(135deg, #225474 0%, #29A8AF 100%);
+            color: #FFF;
+            box-shadow: 0 4px 16px rgba(34, 84, 116, 0.25);
         }
         
         .btn-secondary {
-            background: transparent;
-            color: #0d7377;
-            border: 2px solid #0d7377;
+            background: #FFF;
+            color: #225474;
+            border: 1px solid rgba(34, 84, 116, 0.2);
+            box-shadow: 0 2px 8px rgba(34, 84, 116, 0.1);
         }
         
         .btn:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 15px 35px rgba(13, 115, 119, 0.25);
+            transform: translateY(-2px);
         }
         
         .btn-primary:hover {
-            background: linear-gradient(135deg, #0a5d61 0%, #118a73 100%);
-            box-shadow: 0 15px 35px rgba(13, 115, 119, 0.3);
+            box-shadow: 0 6px 20px rgba(34, 84, 116, 0.35);
         }
         
         .btn-secondary:hover {
-            background: #0d7377;
-            color: white;
+            background: #f8feff;
+            border-color: #225474;
+            box-shadow: 0 4px 12px rgba(34, 84, 116, 0.15);
         }
         
+        /* Services Section */
         .services-section {
-            padding: 4rem 2rem;
-            background: linear-gradient(135deg, #f0fdf4 0%, #ffffff 50%, #f0fdfa 100%);
+            padding: 6rem 2rem;
+            background: #FFF;
         }
         
         .services-container {
@@ -126,18 +127,21 @@
         }
         
         .section-title {
+            font-family: 'Outfit', sans-serif;
             text-align: center;
-            font-size: 2.5em;
-            margin-bottom: 1rem;
-            color: #0d7377;
+            font-size: 3rem;
             font-weight: 600;
+            margin-bottom: 1rem;
+            color: #225474;
         }
         
         .section-subtitle {
+            font-family: 'Inter', sans-serif;
             text-align: center;
-            font-size: 1.2em;
-            margin-bottom: 3rem;
-            color: #059669;
+            font-size: 1.3rem;
+            margin-bottom: 4rem;
+            color: #29A8AF;
+            font-weight: 500;
         }
         
         .services-grid {
@@ -148,54 +152,71 @@
         }
         
         .service-card {
-            background: rgba(255, 255, 255, 0.9);
-            border-radius: 15px;
-            padding: 2rem;
-            border-left: 5px solid #14a085;
+            background: #FFF;
+            border-radius: 16px;
+            padding: 2.5rem;
+            border: 1px solid rgba(34, 84, 116, 0.1);
             transition: all 0.3s ease;
-            border: 1px solid rgba(13, 115, 119, 0.1);
-            box-shadow: 0 4px 12px rgba(13, 115, 119, 0.08);
-            backdrop-filter: blur(10px);
+            box-shadow: 0 4px 16px rgba(34, 84, 116, 0.08);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .service-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: linear-gradient(135deg, #225474 0%, #29A8AF 100%);
         }
         
         .service-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 15px 30px rgba(13, 115, 119, 0.2);
-            border-left-color: #0d7377;
-            background: rgba(255, 255, 255, 0.95);
+            transform: translateY(-8px);
+            box-shadow: 0 12px 32px rgba(34, 84, 116, 0.15);
+            border-color: rgba(41, 168, 175, 0.2);
         }
         
         .service-icon {
-            font-size: 3em;
-            margin-bottom: 1rem;
+            font-size: 3.5rem;
+            margin-bottom: 1.5rem;
             display: block;
         }
         
         .service-title {
-            font-size: 1.3em;
+            font-family: 'Outfit', sans-serif;
+            font-size: 1.4rem;
             font-weight: 600;
             margin-bottom: 1rem;
-            color: #0d7377;
+            color: #225474;
         }
         
         .service-description {
-            font-size: 0.95em;
-            line-height: 1.5;
-            color: #475569;
+            font-family: 'Inter', sans-serif;
+            font-size: 1rem;
+            line-height: 1.6;
+            color: #64748b;
         }
         
+        /* Specialties Section */
         .specialties-section {
-            padding: 3rem 2rem;
+            padding: 4rem 2rem;
+            background: linear-gradient(135deg, #f8feff 0%, rgba(41, 168, 175, 0.05) 100%);
+        }
+        
+        .specialties-container {
+            max-width: 1000px;
+            margin: 0 auto;
             text-align: center;
-            background: rgba(255, 255, 255, 0.8);
-            backdrop-filter: blur(10px);
         }
         
         .specialties-title {
-            font-size: 2em;
-            margin-bottom: 2rem;
-            color: #0d7377;
+            font-family: 'Outfit', sans-serif;
+            font-size: 2.5rem;
             font-weight: 600;
+            margin-bottom: 3rem;
+            color: #225474;
         }
         
         .medical-badges {
@@ -203,58 +224,67 @@
             flex-wrap: wrap;
             justify-content: center;
             gap: 1rem;
-            max-width: 800px;
-            margin: 0 auto;
         }
         
         .medical-badge {
-            background: rgba(240, 253, 250, 0.8);
-            color: #059669;
-            padding: 0.8rem 1.5rem;
-            border-radius: 25px;
-            font-size: 1em;
+            background: #FFF;
+            color: #225474;
+            padding: 1rem 1.5rem;
+            border-radius: 50px;
+            font-family: 'Inter', sans-serif;
+            font-size: 1rem;
             font-weight: 500;
-            border: 1px solid rgba(13, 115, 119, 0.2);
+            border: 1px solid rgba(34, 84, 116, 0.15);
             transition: all 0.3s ease;
             cursor: pointer;
-            backdrop-filter: blur(5px);
+            box-shadow: 0 2px 8px rgba(34, 84, 116, 0.08);
         }
         
         .medical-badge:hover {
-            background: linear-gradient(135deg, #0d7377 0%, #14a085 100%);
-            color: white;
-            transform: scale(1.05);
-            border-color: #0d7377;
-            box-shadow: 0 5px 15px rgba(13, 115, 119, 0.3);
+            background: linear-gradient(135deg, #225474 0%, #29A8AF 100%);
+            color: #FFF;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 16px rgba(34, 84, 116, 0.2);
         }
         
+        /* Footer Section */
         .footer-section {
-            padding: 2rem;
+            padding: 3rem 2rem;
             text-align: center;
-            background: linear-gradient(135deg, #0d7377 0%, #14a085 100%);
-            color: white;
+            background: linear-gradient(135deg, #225474 0%, #29A8AF 100%);
+            color: #FFF;
         }
         
         .footer-text {
+            font-family: 'Inter', sans-serif;
             opacity: 0.9;
-            font-size: 0.9em;
+            font-size: 1rem;
         }
         
+        /* Mobile Responsiveness */
         @media (max-width: 768px) {
-            .container {
-                padding: 2rem;
-                margin: 1rem;
+            
+            .hero-title {
+                font-size: 2.5rem;
             }
             
-            h1 {
-                font-size: 2.8em;
+            .hero-subtitle {
+                font-size: 1.2rem;
+            }
+            
+            .hero-description {
+                font-size: 1rem;
             }
             
             .section-title {
-                font-size: 2em;
+                font-size: 2rem;
             }
             
-            .buttons {
+            .section-subtitle {
+                font-size: 1.1rem;
+            }
+            
+            .hero-buttons {
                 flex-direction: column;
                 align-items: center;
             }
@@ -270,7 +300,7 @@
             }
             
             .service-card {
-                padding: 1.5rem;
+                padding: 2rem;
             }
             
             .medical-badges {
@@ -278,43 +308,55 @@
             }
             
             .medical-badge {
-                padding: 0.6rem 1.2rem;
-                font-size: 0.9em;
+                padding: 0.75rem 1.25rem;
+                font-size: 0.9rem;
             }
         }
         
         @media (max-width: 480px) {
             .hero-section {
-                padding: 1rem;
+                padding: 2rem 1rem;
             }
             
-            .container {
-                padding: 1.5rem;
-            }
-            
-            h1 {
-                font-size: 2.2em;
+            .hero-title {
+                font-size: 2rem;
             }
             
             .services-section {
-                padding: 2rem 1rem;
+                padding: 3rem 1rem;
             }
+            
+            .specialties-section {
+                padding: 3rem 1rem;
+            }
+        }
+        
+        /* Animation classes */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.6s ease;
+        }
+        
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
         }
     </style>
 </head>
 <body>
     <!-- Hero Section -->
     <section class="hero-section">
-        <div class="container">
-            <h1>🏥 Dr. Exys</h1>
-            <p class="subtitle">Tecnologia e Inteligência para Profissionais da Saúde</p>
-            <p class="description">
+        <div class="hero-container">
+            <img src="/assets/images/dr-exys-logo.png" alt="Dr. Exys - Plataforma de Saúde Inteligente" class="hero-logo">
+            <p class="hero-subtitle">Tecnologia e Inteligência para Profissionais da Saúde</p>
+            <p class="hero-description">
                 Plataforma completa que integra IA médica especializada, automação WhatsApp, 
                 BPO financeiro, telemedicina e gestão empresarial. Tudo que seu consultório 
                 ou clínica precisa em um só lugar.
             </p>
             
-            <div class="buttons">
+            <div class="hero-buttons">
                 <a href="/auth/register" class="btn btn-primary">Cadastrar Profissional</a>
                 <a href="/auth/login" class="btn btn-secondary">Acessar Plataforma</a>
             </div>
@@ -329,7 +371,7 @@
             
             <div class="services-grid">
                 <!-- IA Especializada -->
-                <div class="service-card">
+                <div class="service-card fade-in">
                     <span class="service-icon">🤖</span>
                     <h3 class="service-title">IA Especializada para Saúde</h3>
                     <p class="service-description">
@@ -340,7 +382,7 @@
                 </div>
 
                 <!-- Telemedicina -->
-                <div class="service-card">
+                <div class="service-card fade-in">
                     <span class="service-icon">📱</span>
                     <h3 class="service-title">Telemedicina com IA</h3>
                     <p class="service-description">
@@ -351,7 +393,7 @@
                 </div>
 
                 <!-- WhatsApp Automação -->
-                <div class="service-card">
+                <div class="service-card fade-in">
                     <span class="service-icon">💬</span>
                     <h3 class="service-title">Secretária Virtual WhatsApp</h3>
                     <p class="service-description">
@@ -362,7 +404,7 @@
                 </div>
 
                 <!-- BPO Financeiro -->
-                <div class="service-card">
+                <div class="service-card fade-in">
                     <span class="service-icon">💰</span>
                     <h3 class="service-title">BPO Financeiro Médico</h3>
                     <p class="service-description">
@@ -373,7 +415,7 @@
                 </div>
 
                 <!-- Contabilidade -->
-                <div class="service-card">
+                <div class="service-card fade-in">
                     <span class="service-icon">📊</span>
                     <h3 class="service-title">Contabilidade Especializada</h3>
                     <p class="service-description">
@@ -384,7 +426,7 @@
                 </div>
 
                 <!-- Marketing Digital -->
-                <div class="service-card">
+                <div class="service-card fade-in">
                     <span class="service-icon">📈</span>
                     <h3 class="service-title">Marketing Digital Médico</h3>
                     <p class="service-description">
@@ -395,7 +437,7 @@
                 </div>
 
                 <!-- ReceptIA -->
-                <div class="service-card">
+                <div class="service-card fade-in">
                     <span class="service-icon">🤖</span>
                     <h3 class="service-title">ReceptIA - Avatar Presencial</h3>
                     <p class="service-description">
@@ -406,7 +448,7 @@
                 </div>
 
                 <!-- Gestão de Investimentos -->
-                <div class="service-card">
+                <div class="service-card fade-in">
                     <span class="service-icon">📈</span>
                     <h3 class="service-title">Gestão de Investimentos</h3>
                     <p class="service-description">
@@ -417,7 +459,7 @@
                 </div>
 
                 <!-- Concierge Executivo -->
-                <div class="service-card">
+                <div class="service-card fade-in">
                     <span class="service-icon">🎯</span>
                     <h3 class="service-title">Concierge Executivo Médico</h3>
                     <p class="service-description">
@@ -428,7 +470,7 @@
                 </div>
 
                 <!-- ERP Médico -->
-                <div class="service-card">
+                <div class="service-card fade-in">
                     <span class="service-icon">🏥</span>
                     <h3 class="service-title">ERP Médico Dr. Exys</h3>
                     <p class="service-description">
@@ -439,7 +481,7 @@
                 </div>
 
                 <!-- Corretora de Seguros -->
-                <div class="service-card">
+                <div class="service-card fade-in">
                     <span class="service-icon">🛡️</span>
                     <h3 class="service-title">Corretora de Seguros Médica</h3>
                     <p class="service-description">
@@ -454,20 +496,22 @@
 
     <!-- Specialties Section -->
     <section class="specialties-section">
-        <h2 class="specialties-title">Especialidades Atendidas</h2>
-        <div class="medical-badges">
-            <span class="medical-badge">👨‍⚕️ Médicos</span>
-            <span class="medical-badge">👩‍⚕️ Enfermeiros</span>
-            <span class="medical-badge">🦴 Fisioterapeutas</span>
-            <span class="medical-badge">🧠 Psicólogos</span>
-            <span class="medical-badge">🦷 Dentistas</span>
-            <span class="medical-badge">💊 Farmacêuticos</span>
-            <span class="medical-badge">🩺 Clínicas</span>
-            <span class="medical-badge">🏥 Hospitais</span>
-            <span class="medical-badge">🔬 Laboratórios</span>
-            <span class="medical-badge">👁️ Oftalmologistas</span>
-            <span class="medical-badge">👂 Otorrinolaringologistas</span>
-            <span class="medical-badge">🤱 Pediatras</span>
+        <div class="specialties-container">
+            <h2 class="specialties-title">Especialidades Atendidas</h2>
+            <div class="medical-badges">
+                <span class="medical-badge">👨‍⚕️ Médicos</span>
+                <span class="medical-badge">👩‍⚕️ Enfermeiros</span>
+                <span class="medical-badge">🦴 Fisioterapeutas</span>
+                <span class="medical-badge">🧠 Psicólogos</span>
+                <span class="medical-badge">🦷 Dentistas</span>
+                <span class="medical-badge">💊 Farmacêuticos</span>
+                <span class="medical-badge">🩺 Clínicas</span>
+                <span class="medical-badge">🏥 Hospitais</span>
+                <span class="medical-badge">🔬 Laboratórios</span>
+                <span class="medical-badge">👁️ Oftalmologistas</span>
+                <span class="medical-badge">👂 Otorrinolaringologistas</span>
+                <span class="medical-badge">🤱 Pediatras</span>
+            </div>
         </div>
     </section>
 
@@ -479,22 +523,20 @@
     </section>
 
     <script type="module">
-        // Se profissional já estiver logado, redirecionar para dashboard médico
-        const token = localStorage.getItem('medical_token');
-        if (token) {
+        // Check if professional is already logged in
+        if (window.medicalTokens && window.medicalTokens.access) {
             try {
-                const payload = JSON.parse(atob(token.split('.')[1]));
+                const payload = JSON.parse(atob(window.medicalTokens.access.split('.')[1]));
                 const now = Date.now() / 1000;
                 if (payload.exp > now) {
                     window.location.href = '/dashboard/medico';
                 }
             } catch (e) {
-                localStorage.removeItem('medical_token');
-                localStorage.removeItem('medical_user');
+                window.medicalTokens = null;
             }
         }
 
-        // Smooth scroll para botões (se houver âncoras no futuro)
+        // Smooth scroll for anchor links
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function (e) {
                 e.preventDefault();
@@ -508,7 +550,7 @@
             });
         });
 
-        // Adicionar classe de animação aos cards quando entram na viewport
+        // Intersection Observer for animations
         const observerOptions = {
             threshold: 0.1,
             rootMargin: '0px 0px -50px 0px'
@@ -517,18 +559,14 @@
         const observer = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
-                    entry.target.style.opacity = '1';
-                    entry.target.style.transform = 'translateY(0)';
+                    entry.target.classList.add('visible');
                 }
             });
         }, observerOptions);
 
-        // Observar todos os cards de serviço
-        document.querySelectorAll('.service-card').forEach(card => {
-            card.style.opacity = '0';
-            card.style.transform = 'translateY(30px)';
-            card.style.transition = 'all 0.6s ease';
-            observer.observe(card);
+        // Observe all fade-in elements
+        document.querySelectorAll('.fade-in').forEach(element => {
+            observer.observe(element);
         });
     </script>
 </body>

@@ -101,49 +101,6 @@
             margin-bottom: 2.5rem;
         }
         
-        /* Social buttons */
-        .social-buttons {
-            display: flex;
-            gap: 1rem;
-            margin-bottom: 2rem;
-        }
-        
-        .social-btn {
-            flex: 1;
-            padding: 0.875rem;
-            border: 1px solid rgba(34, 84, 116, 0.2);
-            border-radius: 8px;
-            background: #FFF;
-            cursor: pointer;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            transition: all 0.2s;
-            text-decoration: none;
-            color: #225474;
-            font-weight: 500;
-            font-family: 'Inter', sans-serif;
-            gap: 0.5rem;
-        }
-        
-        .social-btn:hover {
-            background: #f8feff;
-            border-color: #225474;
-        }
-        
-        .social-btn img {
-            width: 20px;
-            height: 20px;
-        }
-        
-        .divider {
-            text-align: center;
-            margin: 2rem 0;
-            color: #64748b;
-            font-size: 0.875rem;
-            font-family: 'Inter', sans-serif;
-        }
-        
         /* Form elements */
         .form-group {
             margin-bottom: 2rem;
@@ -194,6 +151,7 @@
             cursor: pointer;
             color: #64748b;
             padding: 0.25rem;
+            transition: color 0.2s;
         }
         
         .password-toggle:hover {
@@ -248,21 +206,6 @@
         }
         
         .login-link a:hover {
-            text-decoration: underline;
-        }
-        
-        /* Terms */
-        .terms {
-            margin-top: 2rem;
-            text-align: center;
-            font-size: 0.875rem;
-            color: #64748b;
-            line-height: 1.6;
-            font-family: 'Inter', sans-serif;
-        }
-        
-        .terms a {
-            color: #29A8AF;
             text-decoration: underline;
         }
         
@@ -325,39 +268,224 @@
             100% { transform: rotate(360deg); }
         }
         
-        /* Responsive */
+        /* Mobile Responsiveness */
         @media (max-width: 768px) {
+            .header {
+                padding: 1rem;
+            }
+            
+            .logo-container {
+                font-size: 1.3rem;
+            }
+            
+            .logo-icon {
+                font-size: 1.8rem;
+            }
+            
+            .main-container {
+                padding: 1rem;
+            }
+            
             .login-card {
                 padding: 2.5rem;
-                max-width: 90%;
+                max-width: 100%;
+                margin: 0;
+                border-radius: 12px;
             }
             
             .login-title {
                 font-size: 2rem;
+                margin-bottom: 2rem;
+            }
+            
+            .medical-badge {
+                padding: 0.875rem 1.25rem;
+                font-size: 0.95rem;
+                margin-bottom: 1.75rem;
+            }
+            
+            .form-group {
+                margin-bottom: 1.75rem;
+            }
+            
+            .form-label {
+                font-size: 0.95rem;
+                margin-bottom: 0.5rem;
             }
             
             .form-input {
                 padding: 1rem 1.25rem;
                 font-size: 1rem;
+                border-radius: 8px;
             }
             
             .submit-btn {
                 padding: 1rem;
                 font-size: 1.1rem;
+                border-radius: 8px;
+                margin-top: 1.25rem;
+            }
+            
+            .login-link {
+                margin-top: 1.5rem;
+                font-size: 0.95rem;
+            }
+            
+            .back-container {
+                padding: 1.5rem;
             }
         }
         
         @media (max-width: 480px) {
+            .header {
+                padding: 0.875rem;
+            }
+            
+            .logo-container {
+                font-size: 1.2rem;
+            }
+            
+            .logo-icon {
+                font-size: 1.6rem;
+            }
+            
+            .main-container {
+                padding: 0.5rem;
+            }
+            
+            .login-card {
+                padding: 2rem;
+                border-radius: 10px;
+            }
+            
+            .login-title {
+                font-size: 1.75rem;
+                margin-bottom: 1.75rem;
+            }
+            
+            .medical-badge {
+                padding: 0.75rem 1rem;
+                font-size: 0.9rem;
+                margin-bottom: 1.5rem;
+            }
+            
+            .form-group {
+                margin-bottom: 1.5rem;
+            }
+            
+            .form-label {
+                font-size: 0.9rem;
+                margin-bottom: 0.5rem;
+            }
+            
+            .form-input {
+                padding: 0.875rem 1rem;
+                font-size: 0.95rem;
+            }
+            
+            .password-toggle {
+                right: 0.75rem;
+            }
+            
+            .submit-btn {
+                padding: 0.875rem;
+                font-size: 1rem;
+                margin-top: 1rem;
+            }
+            
+            .login-link {
+                margin-top: 1.25rem;
+                font-size: 0.9rem;
+            }
+            
+            .back-container {
+                padding: 1rem;
+            }
+            
+            .back-button {
+                font-size: 0.9rem;
+            }
+        }
+        
+        @media (max-width: 360px) {
+            .login-card {
+                padding: 1.5rem;
+            }
+            
+            .login-title {
+                font-size: 1.5rem;
+            }
+            
+            .medical-badge {
+                padding: 0.625rem 0.875rem;
+                font-size: 0.85rem;
+            }
+            
+            .form-input {
+                padding: 0.75rem 0.875rem;
+                font-size: 0.9rem;
+            }
+            
+            .password-toggle {
+                right: 0.625rem;
+            }
+            
+            .submit-btn {
+                padding: 0.75rem;
+                font-size: 0.95rem;
+            }
+        }
+        
+        /* Landscape orientation on small devices */
+        @media (max-height: 600px) and (orientation: landscape) {
+            .main-container {
+                padding: 1rem;
+            }
+            
             .login-card {
                 padding: 2rem;
             }
             
             .login-title {
                 font-size: 1.75rem;
+                margin-bottom: 1.5rem;
             }
             
-            .social-buttons {
-                flex-direction: column;
+            .medical-badge {
+                margin-bottom: 1.25rem;
+                padding: 0.75rem 1rem;
+            }
+            
+            .form-group {
+                margin-bottom: 1.25rem;
+            }
+            
+            .submit-btn {
+                margin-top: 1rem;
+            }
+            
+            .back-container {
+                padding: 1rem;
+            }
+        }
+        
+        /* Touch targets for better mobile interaction */
+        @media (hover: none) and (pointer: coarse) {
+            .form-input, .submit-btn, .back-button, .login-link a, .password-toggle {
+                min-height: 44px;
+            }
+            
+            .submit-btn {
+                padding: 1rem;
+            }
+            
+            .form-input {
+                padding: 1rem 1.25rem;
+            }
+            
+            .password-toggle {
+                padding: 0.5rem;
+                right: 0.5rem;
             }
         }
     </style>
@@ -371,16 +499,9 @@
         </div>
     </header>
 
-    
-    
-
     <!-- Main content -->
     <main class="main-container">
-
-    
         <div class="login-card">
-
-        
             <h1 class="login-title">Entrar</h1>
             
             <!-- Medical badge -->
@@ -390,6 +511,12 @@
             
             <!-- Message container -->
             <div id="message"></div>
+            
+            <!-- Loading indicator -->
+            <div class="loading" id="loading">
+                <div class="spinner"></div>
+                <p>Autenticando...</p>
+            </div>
             
             <!-- Login form -->
             <form id="loginForm">
@@ -401,6 +528,7 @@
                         name="email" 
                         class="form-input" 
                         placeholder="dr.joao@clinica.com" 
+                        autocomplete="email"
                         required
                     >
                 </div>
@@ -414,21 +542,16 @@
                             name="password" 
                             class="form-input" 
                             placeholder="Digite sua senha" 
+                            autocomplete="current-password"
                             required
                         >
-                        <button type="button" class="password-toggle" onclick="togglePassword()">
+                        <button type="button" class="password-toggle" onclick="togglePassword()" aria-label="Mostrar/ocultar senha">
                             <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                                 <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/>
                                 <circle cx="12" cy="12" r="3"/>
                             </svg>
                         </button>
                     </div>
-                </div>
-                
-                <!-- Loading indicator -->
-                <div class="loading" id="loading">
-                    <div class="spinner"></div>
-                    <p>Autenticando...</p>
                 </div>
                 
                 <button type="submit" class="submit-btn" id="submitBtn">
@@ -440,18 +563,15 @@
                 Novo por aqui? <a href="/auth/register">Cadastre-se</a>
             </div>
             
-            
-
-            <!-- Back button  -->
-    <div class="back-container">
-        <a href="/" class="back-button">
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                <path d="M19 12H5M12 19l-7-7 7-7"/>
-            </svg>
-            Voltar
-        </a>
-    </div>
-
+            <!-- Back button -->
+            <div class="back-container">
+                <a href="/" class="back-button">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M19 12H5M12 19l-7-7 7-7"/>
+                    </svg>
+                    Voltar
+                </a>
+            </div>
         </div>
     </main>
 
@@ -493,8 +613,26 @@
         // Toggle password visibility
         window.togglePassword = function() {
             const passwordInput = document.getElementById('password');
-            const type = passwordInput.getAttribute('type') === 'password' ? 'text' : 'password';
-            passwordInput.setAttribute('type', type);
+            const toggleButton = document.querySelector('.password-toggle');
+            const isPassword = passwordInput.getAttribute('type') === 'password';
+            
+            passwordInput.setAttribute('type', isPassword ? 'text' : 'password');
+            
+            // Update icon based on visibility state
+            const svg = toggleButton.querySelector('svg');
+            if (isPassword) {
+                // Show "eye-off" icon when password is visible
+                svg.innerHTML = `
+                    <path d="M17.94 17.94A10.07 10.07 0 0 1 12 20c-7 0-11-8-11-8a18.45 18.45 0 0 1 5.06-5.94M9.9 4.24A9.12 9.12 0 0 1 12 4c7 0 11 8 11 8a18.5 18.5 0 0 1-2.16 3.19m-6.72-1.07a3 3 0 1 1-4.24-4.24"/>
+                    <path d="M1 1l22 22"/>
+                `;
+            } else {
+                // Show "eye" icon when password is hidden
+                svg.innerHTML = `
+                    <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/>
+                    <circle cx="12" cy="12" r="3"/>
+                `;
+            }
         }
         
         // Form handling
@@ -527,14 +665,44 @@
             }
         }
         
+        // Input validation
+        const emailInput = document.getElementById('email');
+        const passwordInput = document.getElementById('password');
+        
+        function validateEmail(email) {
+            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            return emailRegex.test(email);
+        }
+        
+        emailInput.addEventListener('blur', () => {
+            const email = emailInput.value.trim();
+            if (email && !validateEmail(email)) {
+                emailInput.style.borderColor = '#ef4444';
+                showMessage('Por favor, insira um email válido.');
+            } else {
+                emailInput.style.borderColor = '';
+            }
+        });
+        
         form.addEventListener('submit', async (e) => {
             e.preventDefault();
             
             const formData = new FormData(e.target);
             const credentials = {
-                email: formData.get('email'),
+                email: formData.get('email').trim(),
                 password: formData.get('password')
             };
+            
+            // Basic validation
+            if (!credentials.email || !credentials.password) {
+                showMessage('Por favor, preencha todos os campos.');
+                return;
+            }
+            
+            if (!validateEmail(credentials.email)) {
+                showMessage('Por favor, insira um email válido.');
+                return;
+            }
             
             setLoading(true);
             
@@ -572,6 +740,9 @@
                 setLoading(false);
             }
         });
+        
+        // Auto-focus on first input
+        emailInput.focus();
     </script>
 </body>
 </html>
